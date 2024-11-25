@@ -1,0 +1,24 @@
+"class";"subject 1";"subject 2";"subject 3";"subject 4";"subject 5";"subject 6"
+"id";"coordinator id";"coordinator name";"subject id";"subject name"
+"1";"24SCHCRD0";NULL;NULL;NULL
+"2";"24SCHCRD1";NULL;NULL;NULL
+"3";"24SCHCRD2";NULL;NULL;NULL
+"id";"username";"password";"role"
+"1";"24SCHCRD0";"$2y$10$NOv7MkJyKgjjNhLlvi3.cON0dF2cY6t3psFzNRIPXWAM1HPqOgSRe";"coordinator"
+"2";"24SCHSTD0";"$2y$10$EWkcwfRW0GIj/U5dd8n.seGnm5s.z.UNhxneEGiVVrYqoyDqgLWbu";"student"
+"3";"24SCHCRD1";"$2y$10$60HSDzLFAIyi7pqEYHFqaO9Fh6yaEa8jFC928D6RlK7KG6dqH/TXS";"coordinator"
+"4";"24SCHSTD1";"$2y$10$HoX5oAE8IS8bcxi87U3cXenweont4CawACzDmzALoKh.NP3yCmG8q";"student"
+"5";"24SCHSTD2";"$2y$10$DUxwv6/Wvw/qYru10Zy1O.UvE8COCe5QLVf8EYOuG8l874MuDt.0C";"student"
+"7";"24SCHSTD3";"$2y$10$1cDX2PGpQ.9rcWexRNQRYu0XC8V9uRka2w1TtpyNLpNLT2n098mhK";"student"
+"8";"admin";"$2y$10$ojwjPwKw.6ZGFkkLUc/Ki.I8oX0FfjU4k7QP2c.XBhLxnLZAQOOVe";"admin"
+"9";"24SCHSTD4";"$2y$10$vM2bfcbeF/K5wiXhcAHICu3/V9nmrm8Oawk2JJK2.5awnAZadvw5q";"student"
+"10";"24SCHCRD2";"$2y$10$/XtukbHA1FFmm9axl9uK6.jCAQ71Fi7aiR/G9de9/OoK7hKxTxjGu";"coordinator"
+"id";"student id";"student name";"class"
+"1";"24SCHSTD0";NULL;NULL
+"2";"24SCHSTD1";NULL;NULL
+"3";"24SCHSTD2";NULL;NULL
+"4";"24SCHSTD3";NULL;NULL
+"5";"24SCHSTD4";NULL;NULL
+"id";"subject id";"subject name"
+"coordinator";"student"
+"3";"5"
