@@ -11,7 +11,7 @@ function verify($con, $username, $password)
             ?>
             <script>
                 alert("Welcome User");
-                window.open("user/user.php", "_self");
+                window.open("main.php", "_self");
             </script>
             <?php
         } else {

@@ -1,11 +1,20 @@
 <?php
 include '../connection/connector.php';
+function loadSubject($con,$student){
+    $clas = mysqli_fetch_assoc(mysqli_query($con,"SELECT `class` FROM `student` WHERE `student id`='$student'"));
+    $clas = $clas['class'];
+    $subjects = mysqli_fetch_all(mysqli_query($con,"SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `class and subjects` WHERE `class`='$clas'"),MYSQLI_ASSOC);
+    foreach($subjects[0] as $subId => $sub){
+        $updateClass = mysqli_query($con,"UPDATE `student` SET `$subId` = '$sub' WHERE `student id` = '$student'");
+    }
+}
 if(isset($_GET['username'])){
     $username = $_GET['username'];
     $class = $_GET['class'];
     $user = str_contains($username,"STD") ? "student" : "coordinator";
     $updateName = mysqli_query($con,"UPDATE $user SET `class` = '$class' WHERE `$user id` = '$username'");
     if($updateName){
+        loadSubject($con,$_GET['username']);
         ?>
         <script>
             alert("Class Updated Successfully");
@@ -13,6 +22,7 @@ if(isset($_GET['username'])){
         </script>
         <?php
     }
+    
 }
 else if(!isset($_GET['user'])) {
     echo "<script>window.open('user.php','_self')</script>";
@@ -63,7 +73,7 @@ else{
                     <input class="form-control disabled" value="<?php echo htmlentities($role)?>" disabled>
                 </div>
                 <div class="mb-3">
-                    <h4 class="h4 fw-bold">Name</h4>
+                    <h4 class="h4 fw-bold">Select Class</h4>
                     <select name="class" class="px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2" required>
                         <?php
                         include '../connection/connector.php';

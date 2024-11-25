@@ -46,14 +46,15 @@
                             
                             ?>
                             <td>
-                                <?php 
+                                <div class="bg-secondary text-light p-2 mb-1 rounded-3"><?php 
                                 $subName = $sub["subject $i"];
                                 $subName = mysqli_fetch_assoc(mysqli_query($con,"SELECT `subject name` FROM subject WHERE `subject id` = '$subName'"));
-                                echo htmlspecialchars($subName == null ? "Not Selected " : $subName['subject name']);?><br>
-                                <button class=" py-0 ml-3 border-0 px-2 btn btn-secondary rounded-3">
+                                echo htmlspecialchars($subName == null ? "Not Selected " : $subName['subject name']);?>
+                                </div>
+                                <button class=" py-0 ml-3 border-0 px-2 btn btn-dark rounded-3">
                                     <a class="px-1 text-light text-decoration-none" href="subject allot.php<?php echo htmlspecialchars("?class=".$sub['class']."&subject=subject $i")?>">Edit</a>
                                 </button>
-                                <button class=" py-0 border-0 px-2 btn btn-secondary rounded-3">
+                                <button class=" py-0 border-0 px-2 btn btn-danger rounded-3">
                                     <a class="px-1 text-light text-decoration-none" href="subject allot.php<?php echo htmlspecialchars("?class=".$sub['class']."&subject=subject $i&command=remove")?>">Remove</a>
                                 </button>
                             </td>

@@ -1,10 +1,56 @@
-<?php
-include "./connection/connector.php";
-function createSubject($con,$subject){
-    $sub = strtolower($subject['subject id']);
-    $create = mysqli_query($con,"CREATE TABLE `erpdb`.`$sub` (`id` INT NOT NULL AUTO_INCREMENT , `student id` INT(20) NULL , `student name` VARCHAR(70) NULL , `class` INT(2) NULL , `attendance` INT(3) NOT NULL , `marks` INT(3) NULL , `coordinator id` VARCHAR(20) NULL , PRIMARY KEY (`id`), UNIQUE (`student id`)) ENGINE = InnoDB");
-    if($create){
-    echo "$sub created as table\n";
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</head>
+
+<style>
+    * {
+        font-family: poppins;
     }
-}
-?>
+</style>
+
+<body>
+
+    <div class="p-3">
+        <div class="p-3 rounded-4 border border-2">
+            <header>
+                <h1 class="h1 fw-bold">Dashboard</h1>
+                <hr class="hr">
+            </header>
+            <div class="d-flex">
+                <div class="mb-3 mx-1">
+                    <a href="./user/manage users.php?user=student"><button class="btn btn-dark fw-bold">Students</button></a>
+                </div>
+                <div class="mb-3 mx-1">
+                    <a href="./user/manage users.php?user=coordinator"><button class="btn btn-dark fw-bold">Coordinators</button></a>
+                </div>
+                <div class="mb-3 mx-1">
+                    <a href="./user/create user.php"><button class="btn btn-dark fw-bold">Create User</button></a>
+                </div>
+                <div class="mb-3 mx-1">
+                    <a href="./subject/subjects.php"><button class="btn btn-dark fw-bold">Subjects</button></a>
+                </div>
+                <div class="mb-3 mx-1">
+                    <a href="./subject/subject allocation.php"><button class="btn btn-dark fw-bold">Subject Allocation</button></a>
+                </div>
+                <div class="mb-3 mx-1">
+                    <a href="./subject/create subject.php"><button class="btn btn-dark fw-bold">Create Subject</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

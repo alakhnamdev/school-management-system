@@ -30,13 +30,30 @@ function mergeUser($con, $user, $username)
     $mergeUserQuery = "INSERT INTO `$user` (`$user id`) VALUES ('$username')";
     $mergeUser = mysqli_query($con, $mergeUserQuery);
     if ($mergeUser) {
-        echo "$username merged";
+        if ($user == "student") {
+            updateStudentClass($con, $username, $_POST['class']);
+            loadSubject($con,$username);
+        }
+        echo "$username merged".$_POST['class'];
+    }
+}
+function updateStudentClass($con, $student, $clas)
+{
+    $updateStd = mysqli_query($con, "UPDATE `student` SET `class` = '$clas' WHERE `student id` = '$student'");
+}
+
+function loadSubject($con,$student){
+    $clas = mysqli_fetch_assoc(mysqli_query($con,"SELECT `class` FROM `student` WHERE `student id`='$student'"));
+    $clas = $clas['class'];
+    $subjects = mysqli_fetch_all(mysqli_query($con,"SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `class and subjects` WHERE `class`='$clas'"),MYSQLI_ASSOC);
+    foreach($subjects[0] as $subId => $sub){
+        $updateClass = mysqli_query($con,"UPDATE `student` SET `$subId` = '$sub' WHERE `student id` = '$student'");
     }
 }
 if (isset($_POST['submit'])) {
-    $data = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM usercount"));
-    $student = $data['student id'].$data['student'];
-    $coordinator = $data['coordinator id'].$data['coordinator'];
+    $data = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM usercount"));
+    $student = $data['student id'] . $data['student'];
+    $coordinator = $data['coordinator id'] . $data['coordinator'];
     $username = $_POST['role'] == "student" ? $student : $coordinator;
     createUser($con, $username, $_POST['password'], $_POST['role']);
     updateUserCount($con, $_POST['role'], $username);
@@ -66,68 +83,79 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="p-3">
         <div class="p-3 border border-2 rounded-3">
-            <table class="table caption-top">
-                <caption class="h1 fw-bold">Create User</caption>
-                <thead class="table-light">
-                    <tr>
-                        <th>Role</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <form method="post" action="<?php echo htmlspecialchars("create user.php"); ?>">
-                            <td>
-                                <select name="role"
-                                    class="px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2"
-                                    onchange="updateUsername(this)">
-                                    <option value="student" selected>Student</option>
-                                    <option value="coordinator">Coordinator</option>
-                                </select>
-                            </td>
-                            <td>
-                                <label for="username">
-                                    <input type="text" class="form-control shadow-none" id="username" disabled>
-                                </label>
-                            </td>
-                            <td>
-                                <div class="rounded-2 border border-2 d-flex">
-                                    <input type="text" class="form-control shadow-none border-0 shadow-none" placeholder="password" name="password" id="password" value="alakh@2004" required>
-                                    <div id="show" class="btn border-0" onclick="visibility(this)">hide</div><br>
-                                </div>
-                            </td>
-                            <td>
-                                <input type="submit" placeholder="submit" name="submit"
-                                    class="btn btn-secondary px-2 py-1">
-                            </td>
-                        </form>
-                    </tr>
-                </tbody>
-            </table>
+            <header>
+                <h1 class="h1 fw-bold">Create User</h1>
+                <hr class="hr">
+            </header>
+            <form method="post" action="<?php echo htmlspecialchars("create user.php"); ?>">
+                <div class="mb-3">
+                    <h4 class="h4 fw-bold">Username</h4>
+                    <input type="text" class="form-control shadow-none" id="username" disabled>
+                </div>
+                <div class="mb-3">
+                    <h4 class="h4 fw-bold">Role</h4>
+                    <select name="role"
+                        class="w-100 px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2"
+                        onchange="updateUsername(this)">
+                        <option value="student" selected>Student</option>
+                        <option value="coordinator">Coordinator</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <h4 class="h4 fw-bold">Password</h4>
+                    <div class="rounded-2 border border-2 d-flex border-secondary">
+                        <input type="text" class="form-control shadow-none border-0 shadow-none" placeholder="password"
+                            name="password" id="password" value="alakh@2004" required>
+                        <div id="show" class="btn border-0" onclick="visibility(this)">hide</div><br>
+                    </div>
+                </div>
+                <div class="mb-3" id="class">
+                    <h4 class="h4 fw-bold">Select Class</h4>
+                    <select name="class"
+                        class="w-100 px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2"
+                        id="classes">
+                        <?php
+                        include '../connection/connector.php';
+                        $classes = mysqli_fetch_all(mysqli_query($con, "SELECT `class` FROM `class and subjects` ORDER BY `id` ASC"), MYSQLI_ASSOC);
+                        foreach ($classes as $class) {
+                            ?>
+                            <option value="<?php echo $class['class'] ?>"><?php echo $class['class'] ?></option>
+                        <?php }
+                        ?>
+                    </select>
+                </div>
+                <div>
+                    <button name="submit" class="btn btn-dark shadow-none">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
     <script>
-<?php
-include '../connection/connector.php';
-$data = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM usercount"));
-$student = $data['student id'].$data['student'];
-$coordinator = $data['coordinator id'].$data['coordinator'];
-?>
-let users = {coordinator:"<?php echo $coordinator ?>",student:"<?php echo $student ?>"};
-<?php
-?>
+        <?php
+        include '../connection/connector.php';
+        $data = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM usercount"));
+        $student = $data['student id'] . $data['student'];
+        $coordinator = $data['coordinator id'] . $data['coordinator'];
+        ?>
+        let users = { coordinator: "<?php echo $coordinator ?>", student: "<?php echo $student ?>" };
+        <?php
+        ?>
 
-        let user = document.getElementById("username");
+            let user = document.getElementById("username");
+        let clas = document.getElementById("class");
+        let classes = document.getElementById("classes");
         user.value = users.student;
 
         let updateUsername = (e) => {
             if (e.value == "student") {
                 user.value = users.student;
+                classes.disabled = false;
+                clas.style.display = "block";
             }
             else {
                 user.value = users.coordinator;
+                classes.disabled = true;
+                clas.style.display = "none";
             }
         }
         document.getElementById("show").addEventListener("click", event => {
@@ -144,7 +172,9 @@ let users = {coordinator:"<?php echo $coordinator ?>",student:"<?php echo $stude
             e.innerHTML = e.innerHTML == "show" ? "hide" : "show";
         }
     </script>
-    <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

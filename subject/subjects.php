@@ -25,7 +25,6 @@
                     <th>Subject Id</th>
                     <th>Subject Name</th>
                     <th>Coordinator Id</th>
-                    <th>Manage</th>
                 </thead>
                 <tbody class="table-group-divider">
                 <?php
@@ -37,12 +36,17 @@
                     <tr>
                         <td><?php echo htmlspecialchars($sub["id"]) ?></td>
                         <td><?php echo htmlspecialchars($sub["subject id"]) ?></td>
-                        <td><?php echo htmlspecialchars($sub["subject name"]) ?></td>
-                        <td><?php echo htmlspecialchars($sub["coordinator id"]==NULL ? "None" : $sub["coordinator id"]) ?></td>
                         <td>
-                            <button class="btn btn-secondary px-2 py-0 shadow-none">
-                                <a class="text-decoration-none text-light p-0 m-0" href="edit subject.php?<?php echo htmlspecialchars("subjectId=".$sub["subject id"]."&subjectName=".$sub["subject name"]) ?>">Edit</a>
-                            </button>
+                            <?php echo htmlspecialchars($sub["subject name"]) ?>
+                            <a class="text-decoration-none text-light p-0 m-0" href="edit subject.php?<?php echo htmlspecialchars("subjectId=".$sub["subject id"]."&subjectName=".$sub["subject name"]) ?>">
+                                <button class="btn btn-dark px-2 py-0 shadow-none">Edit</button>
+                            </a>
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($sub["coordinator id"]==NULL ? "None" : $sub["coordinator id"]) ?>                            
+                            <a class="text-decoration-none text-light p-0 m-0" href="change coordinator.php?<?php echo htmlspecialchars("subjectId=".$sub["subject id"]) ?>">
+                                <button class="btn btn-dark px-2 py-0 shadow-none">Change</button>
+                            </a>                            
                         </td>
                     </tr>
                 <?php }
