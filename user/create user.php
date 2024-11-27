@@ -25,6 +25,32 @@ function updateUserCount($con, $user, $username)
         <?php
     }
 }
+function mergeStudentWithSubjects($con, $student)
+{
+    $subjects = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `student` WHERE `student id` = '$student'"));
+    foreach ($subjects as $sub) {
+        $sub = strtolower($sub);
+        $addStudent = mysqli_query($con, "INSERT INTO `$sub` (`student id`) VALUES ('$student')");
+        if ($addStudent) {
+            echo "$student added to $sub\n";
+        }
+    }
+}
+function updateStudentClass($con, $student, $clas)
+{
+    $updateStd = mysqli_query($con, "UPDATE `student` SET `class` = '$clas' WHERE `student id` = '$student'");
+}
+function loadSubject($con,$student){
+    $clas = mysqli_fetch_assoc(mysqli_query($con,"SELECT `class` FROM `student` WHERE `student id`='$student'"));
+    $clas = $clas['class'];
+    $subjects = mysqli_fetch_all(mysqli_query($con,"SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `class and subjects` WHERE `class`='$clas'"),MYSQLI_ASSOC);
+    foreach($subjects[0] as $subId => $sub){
+        $updateClass = mysqli_query($con,"UPDATE `student` SET `$subId` = '$sub' WHERE `student id` = '$student'");
+    }
+    if($updateClass){
+        return true;
+    }
+}
 function mergeUser($con, $user, $username)
 {
     $mergeUserQuery = "INSERT INTO `$user` (`$user id`) VALUES ('$username')";
@@ -33,21 +59,9 @@ function mergeUser($con, $user, $username)
         if ($user == "student") {
             updateStudentClass($con, $username, $_POST['class']);
             loadSubject($con,$username);
+            mergeStudentWithSubjects($con,$username);
         }
         echo "$username merged".$_POST['class'];
-    }
-}
-function updateStudentClass($con, $student, $clas)
-{
-    $updateStd = mysqli_query($con, "UPDATE `student` SET `class` = '$clas' WHERE `student id` = '$student'");
-}
-
-function loadSubject($con,$student){
-    $clas = mysqli_fetch_assoc(mysqli_query($con,"SELECT `class` FROM `student` WHERE `student id`='$student'"));
-    $clas = $clas['class'];
-    $subjects = mysqli_fetch_all(mysqli_query($con,"SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `class and subjects` WHERE `class`='$clas'"),MYSQLI_ASSOC);
-    foreach($subjects[0] as $subId => $sub){
-        $updateClass = mysqli_query($con,"UPDATE `student` SET `$subId` = '$sub' WHERE `student id` = '$student'");
     }
 }
 if (isset($_POST['submit'])) {

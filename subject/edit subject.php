@@ -19,7 +19,9 @@ else{
     }
     function deleteSubject($con,$subId){
         $deleteSubject = mysqli_query($con,"DELETE FROM subject WHERE `subject id` = '$subId'");
-        if($deleteSubject){
+        $subId = strtolower($subId);
+        $deleteSubjectTable = mysqli_query($con,"DROP TABLE `$subId`");
+        if($deleteSubject && $deleteSubjectTable){
             ?>
             <script>
                 alert("Subject Deleted!");

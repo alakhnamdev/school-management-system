@@ -1,5 +1,26 @@
 <?php
 include '../connection/connector.php';
+function mergeStudentWithSubjects($con, $student)
+{
+    $subjects = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `student` WHERE `student id` = '$student'"));
+    foreach ($subjects as $sub) {
+        $sub = strtolower($sub);
+        $addStudent = mysqli_query($con, "INSERT INTO `$sub` (`student id`) VALUES ('$student')");
+        if ($addStudent) {
+            echo "$student added to $sub\n";
+        }
+    }
+}
+function removeStudentFromSubject($con,$student){
+    $subjects = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `student` WHERE `student id` = '$student'"));
+    foreach ($subjects as $sub) {
+        $sub = strtolower($sub);
+        $deleteStudent = mysqli_query($con,"DELETE FROM `$sub` WHERE `student id` = '$student'");
+        if ($deleteStudent) {
+            echo "$student removed from $sub\n";
+        }
+    }
+}
 function loadSubject($con,$student){
     $clas = mysqli_fetch_assoc(mysqli_query($con,"SELECT `class` FROM `student` WHERE `student id`='$student'"));
     $clas = $clas['class'];
@@ -11,14 +32,15 @@ function loadSubject($con,$student){
 if(isset($_GET['username'])){
     $username = $_GET['username'];
     $class = $_GET['class'];
-    $user = str_contains($username,"STD") ? "student" : "coordinator";
-    $updateName = mysqli_query($con,"UPDATE $user SET `class` = '$class' WHERE `$user id` = '$username'");
+    $updateName = mysqli_query($con,"UPDATE `student` SET `class` = '$class' WHERE `student id` = '$username'");
     if($updateName){
-        loadSubject($con,$_GET['username']);
+        removeStudentFromSubject($con,$username);
+        loadSubject($con,$username);
+        mergeStudentWithSubjects($con,$username);
         ?>
         <script>
             alert("Class Updated Successfully");
-            window.open("manage users.php?user=<?php echo htmlspecialchars($user)?>","_self");
+            window.open("manage users.php?user=student","_self");
         </script>
         <?php
     }

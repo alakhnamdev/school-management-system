@@ -43,7 +43,6 @@
                         <td><?php echo htmlspecialchars($sub["class"]) ?></td>
                         <?php 
                         for($i=1;$i<=6;$i++){
-                            
                             ?>
                             <td>
                                 <div class="bg-secondary text-light p-2 mb-1 rounded-3"><?php 

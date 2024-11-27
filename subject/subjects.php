@@ -24,6 +24,7 @@
                     <th>Id</th>
                     <th>Subject Id</th>
                     <th>Subject Name</th>
+                    <th>Manage</th>
                     <th>Coordinator Id</th>
                 </thead>
                 <tbody class="table-group-divider">
@@ -36,8 +37,8 @@
                     <tr>
                         <td><?php echo htmlspecialchars($sub["id"]) ?></td>
                         <td><?php echo htmlspecialchars($sub["subject id"]) ?></td>
+                        <td><?php echo htmlspecialchars($sub["subject name"]) ?></td>
                         <td>
-                            <?php echo htmlspecialchars($sub["subject name"]) ?>
                             <a class="text-decoration-none text-light p-0 m-0" href="edit subject.php?<?php echo htmlspecialchars("subjectId=".$sub["subject id"]."&subjectName=".$sub["subject name"]) ?>">
                                 <button class="btn btn-dark px-2 py-0 shadow-none">Edit</button>
                             </a>

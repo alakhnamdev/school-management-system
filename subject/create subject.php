@@ -1,5 +1,13 @@
 <?php
 include "../connection/connector.php";
+function createSubjectTable($con, $subject)
+{
+    $sub = strtolower($subject);
+    $create = mysqli_query($con, "CREATE TABLE `erpdb`.`$sub` (`id` INT NOT NULL AUTO_INCREMENT , `student id` VARCHAR(20) NULL , `attendance` INT(3) NULL , `marks` INT(3) NULL , PRIMARY KEY (`id`), UNIQUE (`student id`)) ENGINE = InnoDB");
+    if ($create) {
+        echo "$sub created as table\n";
+    }
+}
 function createSubject($con, $subject)
 {
     $subCode = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subject` ORDER BY `id` DESC"));
@@ -8,6 +16,7 @@ function createSubject($con, $subject)
     $createSubjectQuery = "INSERT INTO `subject` (`subject id`,`subject name`) VALUES ('$subCode','$subject')";
     $createSubject = mysqli_query($con, $createSubjectQuery);
     if ($createSubject) {
+        createSubjectTable($con,$subCode);
         ?>
         <script>
             alert("<?php echo "$subject created with $subCode (Subject Id)"?>");
