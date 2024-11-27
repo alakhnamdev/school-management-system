@@ -8,6 +8,13 @@ function createSubjectTable($con, $subject)
         echo "$sub created as table\n";
     }
 }
+function createSubjectSession($con, $subject)
+{
+    $create = mysqli_query($con, "INSERT INTO `subject sessions` (`subject id`) VALUES ('$subject')");
+    if($create){        
+        echo "$subject added in subject sessions\n";
+    }
+}
 function createSubject($con, $subject)
 {
     $subCode = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `subject` ORDER BY `id` DESC"));
@@ -17,6 +24,7 @@ function createSubject($con, $subject)
     $createSubject = mysqli_query($con, $createSubjectQuery);
     if ($createSubject) {
         createSubjectTable($con,$subCode);
+        createSubjectSession($con,$subCode);
         ?>
         <script>
             alert("<?php echo "$subject created with $subCode (Subject Id)"?>");

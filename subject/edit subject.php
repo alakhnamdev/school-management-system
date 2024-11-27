@@ -17,11 +17,18 @@ else{
             <?php
         }
     }
+    function deleteSubjectSession($con,$subject){
+        $create = mysqli_query($con, "DELETE FROM `subject sessions` WHERE `subject id` = '$subject'");
+        if($create){        
+            echo "$subject added in subject sessions\n";
+        }
+    }
     function deleteSubject($con,$subId){
         $deleteSubject = mysqli_query($con,"DELETE FROM subject WHERE `subject id` = '$subId'");
         $subId = strtolower($subId);
         $deleteSubjectTable = mysqli_query($con,"DROP TABLE `$subId`");
         if($deleteSubject && $deleteSubjectTable){
+            deleteSubjectSession($con,$subId);
             ?>
             <script>
                 alert("Subject Deleted!");

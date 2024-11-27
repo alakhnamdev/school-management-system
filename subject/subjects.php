@@ -30,7 +30,6 @@
                 <tbody class="table-group-divider">
                 <?php
                 include "../connection/connector.php";
-                query:
                 $subjects = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM `subject`"), MYSQLI_ASSOC);
                 foreach ($subjects as $sub) {
                     ?>

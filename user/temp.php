@@ -35,27 +35,60 @@ include '../connection/connector.php';
 // }
 // addSubjects($con);
 // createSubject($con,'sub001');
-function mergeStudentWithSubjects($con, $student)
-{
-    $subjects = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `student` WHERE `student id` = '$student'"));
-    foreach ($subjects as $sub) {
-        $sub = strtolower($sub);
-        $addStudent = mysqli_query($con, "INSERT INTO `$sub` (`student id`) VALUES ('$student')");
-        if ($addStudent) {
-            echo "$student added to $sub\n";
-        }
+// function mergeStudentWithSubjects($con, $student)
+// {
+//     $subjects = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `student` WHERE `student id` = '$student'"));
+//     foreach ($subjects as $sub) {
+//         $sub = strtolower($sub);
+//         $addStudent = mysqli_query($con, "INSERT INTO `$sub` (`student id`) VALUES ('$student')");
+//         if ($addStudent) {
+//             echo "$student added to $sub\n";
+//         }
+//     }
+// }
+// function removeStudentFromSubject($con,$student){
+//     $subjects = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `student` WHERE `student id` = '$student'"));
+//     foreach ($subjects as $sub) {
+//         $sub = strtolower($sub);
+//         $deleteStudent = mysqli_query($con,"DELETE FROM `$sub` WHERE `student id` = '$student'");
+//         if ($deleteStudent) {
+//             echo "$student removed from $sub\n";
+//         }
+//     }
+// }
+// mergeStudentWithSubjects($con, "24SCHSTD2");
+// removeStudentFromSubject($con, "24SCHSTD28");
+// function mergeAllStudentsWithSubject($con){
+//     $students = mysqli_fetch_all(mysqli_query($con,"SELECT `student id` FROM `student` ORDER BY `id`"),MYSQLI_ASSOC);
+//     foreach($students as $stu){
+//         $stu = $stu['student id'];
+//         mergeStudentWithSubjects($con,$stu);
+//     }
+// }
+// mergeAllStudentsWithSubject($con);
+// s
+// // createSubjectSession($con,"sub001");
+// function createAllSubjectSessions($con)
+// {
+//     $subjects = mysqli_fetch_all(mysqli_query($con, "SELECT `subject id` FROM `subject`"), MYSQLI_ASSOC);
+//     foreach ($subjects as $sub) {
+//         createSubjectSession($con, $sub['subject id']);
+//     }
+// }
+// createAllSubjectSessions($con);
+
+function viewSubjects($con){
+    $subjects = mysqli_fetch_all(mysqli_query($con,"SELECT `subject id`,`subject name` FROM `subject`"),MYSQLI_ASSOC);
+    foreach($subjects as $sub){
+        $subId = $sub['subject id'];
+        $subName = $sub['subject name'];
+        echo "$subId,$subName\n";
+        ?>        
+            <a href="subject.php?subjectId=<?php urlencode($subId)?>" class="text-decoration-none bg-light border border-3 border-dark rounded-3">
+                <button class="btn text-dark p-5"><div class="h3 fw-bold"><?php htmlspecialchars($subName)?></div></button>
+            </a>
+        <?php
     }
 }
-function removeStudentFromSubject($con,$student){
-    $subjects = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `student` WHERE `student id` = '$student'"));
-    foreach ($subjects as $sub) {
-        $sub = strtolower($sub);
-        $deleteStudent = mysqli_query($con,"DELETE FROM `$sub` WHERE `student id` = '$student'");
-        if ($deleteStudent) {
-            echo "$student removed from $sub\n";
-        }
-    }
-}
-mergeStudentWithSubjects($con, "24SCHSTD2");
-removeStudentFromSubject($con, "24SCHSTD2");
+viewSubjects($con);
 ?>
