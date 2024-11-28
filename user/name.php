@@ -1,5 +1,6 @@
 <?php
 include '../connection/connector.php';
+include "../sidebar/sidebar.php";
 if(isset($_GET['username'])){
     $username = $_GET['username'];
     $name = $_GET['name'];
@@ -36,13 +37,8 @@ else{
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
-<style>
-    * {
-        font-family: poppins;
-    }
-</style>
 
 <body>
 

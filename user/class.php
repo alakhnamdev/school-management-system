@@ -1,5 +1,6 @@
 <?php
 include '../connection/connector.php';
+include "../sidebar/sidebar.php";
 function mergeStudentWithSubjects($con, $student)
 {
     $subjects = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`,`subject 2`,`subject 3`,`subject 4`,`subject 5`,`subject 6` FROM `student` WHERE `student id` = '$student'"));
@@ -68,13 +69,8 @@ else{
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
-<style>
-    * {
-        font-family: poppins;
-    }
-</style>
 
 <body>
 

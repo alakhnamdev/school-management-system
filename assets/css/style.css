@@ -1,0 +1,14 @@
+
+* {
+    font-family: poppins;
+    transition: all 0.25s ease;
+}
+body{
+    margin-top: 60px;
+}
+.poppins{
+    font-family: poppins;
+}
+.playfair{
+    font-family: playfair display;
+}

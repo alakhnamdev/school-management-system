@@ -1,0 +1,16 @@
+#navbar{
+    height: 60px;
+}
+#navbar h1{
+    font-size: 40px;
+}
+#sidebar{
+    margin-top: 60px;
+}
+#navbar,#sidebar{
+    left: 0;
+}
+#logo{
+    height: 50px;
+    border-radius: 100%;
+}

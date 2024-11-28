@@ -1,5 +1,6 @@
 <?php
 include "../connection/connector.php";
+include "../sidebar/sidebar.php";
 function createUser($con, $username, $password, $role)
 {
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -74,6 +75,7 @@ if (isset($_POST['submit'])) {
     mergeUser($con, $_POST['role'], $username);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,13 +88,8 @@ if (isset($_POST['submit'])) {
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400;500&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
-<style>
-    * {
-        font-family: poppins;
-    }
-</style>
 
 <body>
     <div class="p-3">

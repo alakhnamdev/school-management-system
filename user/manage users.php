@@ -1,4 +1,5 @@
 <?php
+include "../sidebar/sidebar.php";
 if (!isset($_GET['user'])) {
     echo "<script>window.open('user.php','_self')</script>";
 }
@@ -13,13 +14,8 @@ if (!isset($_GET['user'])) {
     <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-
-<style>
-    *{
-        font-family: poppins;
-    }
-</style>
 
 <body>
     <div class="p-3">

@@ -1,3 +1,4 @@
+<?php include "../sidebar/sidebar.php";?>
 <?php 
 include "../connection/connector.php";
 if(!isset($_GET['class']) || !isset($_GET['subject'])){
@@ -62,6 +63,7 @@ else{
         <title>Document</title>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
         <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="../assets/css/style.css">
     </head>
 
     <style>
