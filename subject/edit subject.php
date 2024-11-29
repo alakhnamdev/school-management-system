@@ -62,36 +62,31 @@ else{
     </style>
     <body>
         <div class="p-3">
-            <div class="p-3 rounded-3 border border-2">
-                <table class="table table-hover caption-top">
-                    <caption class="h1 fw-bold">Edit Subject</caption>
-                    <thead class="table-light">
-                        <tr>
-                            <th>Subject Id</th>
-                            <th>Subject Name</th>
-                            <th>Rename</th>
-                            <th>Manage</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        <form action="<?php echo htmlspecialchars("edit subject.php")?>" method="get">
-                            <tr>
-                            <td><?php echo htmlspecialchars($_GET['subjectId'])?></td>
-                            <td><?php echo htmlspecialchars($_GET['subjectName'])?></td>
-                                <td>
-                                    <label for="subject name">
-                                        <input type="hidden" name="subjectId" value="<?php echo htmlspecialchars($_GET['subjectId'])?>">
-                                        <input class="form-control shadow-none" name="subjectName" type="text" placeholder="Subject Name" required>
-                                    </label>
-                                </td>
-                                <td>
-                                    <button name="submit" class="btn btn-secondary px-2 py-1">Rename</button>
-                        </form>
-                                    <button class="btn btn-secondary px-2 py-1 mx-2" onclick="deleteSubject()">Delete</button>
-                                </td>
-                            </tr>
-                    </tbody>
-                </table>
+            <div class="p-3 rounded-3 border border-2">                
+                <header>
+                    <h3 class="h3 fw-bold">Edit Subject</h3>
+                    <hr class="hr">
+                </header>                
+                <form action="<?php echo htmlspecialchars("edit subject.php")?>" method="get">                            
+                    <div class="mb-3 ">
+                        <h6 class="h6 fw-bold">Subject Id</h6>
+                        <div class="form-control shadow-none p-3"><?php echo htmlspecialchars($_GET['subjectId'])?></div>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="h6 fw-bold">Subject Name</h6>
+                        <div class="form-control shadow-none p-3"><?php echo htmlspecialchars($_GET['subjectName'])?></div>
+                    </div>
+                    <div class="mb-3 ">
+                        <h6 class="h6 fw-bold">Rename</h6>
+                        <input type="hidden" name="subjectId" value="<?php echo htmlspecialchars($_GET['subjectId'])?>">
+                        <input class="form-control shadow-none p-3 w-100" name="subjectName" type="text" placeholder="Subject Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="h6 fw-bold">Manage</h6>
+                            <button name="submit" class="btn btn-dark px-5 p-3">Rename</button>
+                </form>
+                        <button class="btn btn-danger px-5 p-3" onclick="deleteSubject()">Delete</button>
+                    </div>
             </div>
         </div>
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

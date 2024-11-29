@@ -33,7 +33,7 @@ if (!isset($_GET['subjectId'])) {
         <div class="p-3">
             <div class="p-3 border border-2 rounded-3">
                 <table class="table table-hover caption-top">
-                    <caption class="h1 fw-bold">Student Marks</caption>
+                    <caption class="h3 fw-bold">Student Marks</caption>
                     <thead>
                         <th>Id</th>
                         <th>Student Id</th>

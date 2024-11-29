@@ -76,19 +76,18 @@ include '../connection/connector.php';
 //     }
 // }
 // createAllSubjectSessions($con);
-
-function viewSubjects($con){
-    $subjects = mysqli_fetch_all(mysqli_query($con,"SELECT `subject id`,`subject name` FROM `subject`"),MYSQLI_ASSOC);
-    foreach($subjects as $sub){
-        $subId = $sub['subject id'];
-        $subName = $sub['subject name'];
-        echo "$subId,$subName\n";
-        ?>        
-            <a href="subject.php?subjectId=<?php urlencode($subId)?>" class="text-decoration-none bg-light border border-3 border-dark rounded-3">
-                <button class="btn text-dark p-5"><div class="h3 fw-bold"><?php htmlspecialchars($subName)?></div></button>
-            </a>
-        <?php
-    }
+session_start();
+echo $_SESSION['username'];
+if(str_contains($_SESSION['username'],"STD")){
+    echo "student";
 }
-viewSubjects($con);
+// function getClasses($con,$subject){
+//     $classes = mysqli_fetch_all(mysqli_query($con,"SELECT * FROM `class and subjects`"),MYSQLI_ASSOC);
+//     foreach($classes as $cls){
+//         if(in_array($subject,$cls)){
+//             echo $cls['class']."\n";
+//         }
+//     }
+// }
+// getClasses($con,"SUB001");
 ?>

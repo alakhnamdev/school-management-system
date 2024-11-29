@@ -9,9 +9,9 @@ function viewBySubjects($con)
         $subName = $sub['subject name'];
         ?>
         <a href="subject.php?subjectId=<?php echo urlencode($subId) ?>"
-            class="text-decoration-none bg-light border border-3 border-dark rounded-3">
-            <button class="btn text-dark px-5 py-3">
-                <div class="h3 fw-bold"><?php echo htmlspecialchars($subName) ?></div>
+            class="text-decoration-none bg-dark rounded-3">
+            <button class="btn text-light p-3">
+                <?php echo htmlspecialchars($subName) ?>
             </button>
         </a>
         <?php
@@ -24,9 +24,9 @@ function viewByClass($con)
         $clas = $clas['class'];
         ?>
         <a href="subject.php?subjectId=<?php echo urlencode($clas) ?>"
-            class="text-decoration-none bg-light border border-3 border-dark rounded-3">
-            <button class="btn text-dark px-5 py-3">
-                <div class="h3 fw-bold"><?php echo htmlspecialchars($clas) ?></div>
+            class="text-decoration-none bg-dark rounded-3">
+            <button class="btn text-light p-3">
+                <?php echo htmlspecialchars($clas) ?>
             </button>
         </a>
         <?php
@@ -63,7 +63,7 @@ if ($_GET['view'] == "subject") {
         <div class="p-3">
             <div class="p-3 rounded-4 border border-2">
                 <header>
-                    <h1 class="h1 fw-bold">View By Subjects</h1>
+                    <h3 class="h3 fw-bold">View By Subjects</h3>
                     <hr class="hr">
                 </header>
                 <div class="d-flex gap-3 flex-wrap">
@@ -106,7 +106,7 @@ if ($_GET['view'] == "subject") {
         <div class="p-3">
             <div class="p-3 rounded-4 border border-2">
                 <header>
-                    <h1 class="h1 fw-bold">View By Class</h1>
+                    <h3 class="h3 fw-bold">View By Class</h3>
                     <hr class="hr">
                 </header>
                 <div class="d-flex gap-3 flex-wrap">

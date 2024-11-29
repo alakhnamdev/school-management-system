@@ -20,8 +20,9 @@ if (!isset($_GET['user'])) {
 <body>
     <div class="p-3">
         <div class="p-3 rounded-4 border border-2">
+            <div class=" table-responsive vh-100 overflow-auto">
             <table class="table table-hover caption-top">
-                <caption class="h1 fw-bold">Users</caption>
+                <caption class="h3 fw-bold">Users</caption>
                 <thead class="table-light">
                     <?php
                     include "../connection/connector.php";
@@ -88,6 +89,7 @@ if (!isset($_GET['user'])) {
                     ?>
                 </tbody>
             </table>
+        </div>
         </div>
     </div>
 </body>

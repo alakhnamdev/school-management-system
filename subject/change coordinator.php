@@ -51,18 +51,18 @@ else{
     <div class="p-3">
         <div class="p-3 rounded-4 border border-2">
             <header>
-                <h1 class="h1 fw-bold">Change Coordinator</h1>
+                <h3 class="h3 fw-bold">Change Coordinator</h3>
                 <hr class="hr">
             </header>
             <form action="<?php echo htmlspecialchars("change coordinator.php")?>" method="get">
                 <div class="mb-3">
                     <h4 class="h4 fw-bold">Subject Id</h4>
-                    <input class="form-control disabled" value="<?php echo htmlspecialchars($subId)?>" disabled>
+                    <input class="form-control p-3" value="<?php echo htmlspecialchars($subId)?>" disabled>
                     <input type="hidden" name="subjectId" value="<?php echo htmlspecialchars($subId)?>">
                 </div>
                 <div class="mb-3">
                     <h4 class="h4 fw-bold">Select Coordinator </h4>
-                    <select name="coordinator" class="px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2 w-100" required>
+                    <select name="coordinator" class="text-secondary p-3 rounded-2 shadow-none border border-2 w-100" required>
                         <?php
                         $coordinator = mysqli_fetch_all(mysqli_query($con, "SELECT `coordinator id` FROM `coordinator` ORDER BY `id` ASC"),MYSQLI_ASSOC);
                         $extra = mysqli_fetch_all(mysqli_query($con, "SELECT `coordinator id` FROM `subject` WHERE `coordinator id` != 'NULL'"),MYSQLI_ASSOC);
@@ -78,7 +78,7 @@ else{
                     </select>
                 </div>
                 <div>
-                    <button name="submit" class="btn btn-dark shadow-none">Submit</button>
+                    <button name="submit" class="btn btn-dark p-3 px-5 shadow-none">Submit</button>
                 </div>
             </form>
         </div>

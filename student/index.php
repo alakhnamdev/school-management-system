@@ -1,4 +1,4 @@
-<?php include "../sidebar/sidebar.php";?>
+<?php include "../sidebar/sidebar std.php";?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,35 +28,18 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col mb-3 mx-1">
-                        <a href="../user/manage users.php?user=student">
-                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Students</h5></button>
+                        <a href="../student/notice.php">
+                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Notice</h5></button>
                         </a>
                     </div>
                     <div class="col mb-3 mx-1">
-                        <a href="../user/manage users.php?user=coordinator">
-                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Coordinators</h5></button>
+                        <a href="../student/academics.php">
+                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Academics</h5></button>
                         </a>
                     </div>
                     <div class="col mb-3 mx-1">
-                        <a href="../user/create user.php">
-                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Create User</h5></button>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3 mx-1">
-                        <a href="../subject/subjects.php">
-                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Subjects</h5></button>
-                        </a>
-                    </div>
-                    <div class="col mb-3 mx-1">
-                        <a href="../subject/subject allocation.php">
-                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Subject Allocation</h5></button>
-                        </a>
-                    </div>
-                    <div class="col mb-3 mx-1">
-                        <a href="../subject/create subject.php">
-                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Create Subject</h5></button>
+                        <a href="../student/attendance.php">
+                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Attendance</h5></button>
                         </a>
                     </div>
                 </div>

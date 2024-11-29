@@ -8,10 +8,12 @@ function verify($con, $username, $password)
         $user = mysqli_fetch_assoc($checkUser);
         $verified = password_verify($password, $user['password']);
         if ($verified) {
+            session_start();
+            $_SESSION['username'] = $username;
             ?>
             <script>
                 alert("Welcome User");
-                window.open("main.php", "_self");
+                window.open("dashboard", "_self");
             </script>
             <?php
         } else {

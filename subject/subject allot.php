@@ -75,54 +75,51 @@ else{
 
     <body>
         <div class="p-3">
-            <div class="p-3 rounded-4 border border-2">
-                <table class="table caption-top">
-                    <caption class="h1 fw-bold">Allot Subject</caption>
-                    <tr class="table-light">
-                        <th>Class</th>
-                        <th>Subject</th>
-                        <th colspan="2">Select Subject</th>
-                    </tr>
-                    <tr>
-                        <?php
-                        include "../connection/connector.php";
-                        $class = $_GET['class'];
-                        $subject = $_GET['subject'];
-                        $subjects = mysqli_fetch_all(mysqli_query($con, "SELECT `subject id` FROM `subject`"), MYSQLI_ASSOC);
-                        $extra = array_values(mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`, `subject 2`, `subject 3`, `subject 4`, `subject 5`, `subject 6` FROM `class and subjects` WHERE `class` = '$class'")));
-                        array_splice($extra,substr($subject,8)-1,1);
-                        for($i=count($subjects)-1;$i>=0;$i--){
-                            if(in_array($subjects[$i]['subject id'],$extra)){
-                                array_splice($subjects,$i,1);
-                            }
-                        }
-                        ?>
-                        <td><?php echo htmlspecialchars($class) ?></td>
-                        <td><?php echo htmlspecialchars($subject) ?></td>
-                        <td>
-                            <form action="<?php echo htmlspecialchars("subject allot.php") ?>" method="get">
-                                <label for="subjectName">
-                                    <select name="subjectName" class="px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2">
-                                        <?php
-                                        foreach ($subjects as $sub) {
-                                            $subId = $sub['subject id'];
-                                            $subName = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject name` FROM `subject` WHERE `subject id`='$subId'"));
-                                            $subName = "($subId) ".$subName['subject name'];
-                                            ?>
-                                            <option value="<?php echo $subId ?>"><?php echo $subName ?></option>
-                                        <?php }
-                                        ?>
-                                    </select>
-                                </label>
-                                <input type="hidden" class="d-none" name="class" value="<?php echo $class ?>">
-                                <input type="hidden" class="d-none" name="subject" value="<?php echo $subject ?>">
-                                <label for="submit"><button name="submit" class="btn btn-secondary px-2 py-1 shadow-none">Allot</button></label>
-                            </form>
-                        </td>
-                        <?php
-                        ?>
-                    </tr>
-                </table>
+            <div class="p-3 rounded-4 border border-2">                
+                <header>
+                    <h3 class="h3 fw-bold">Allot Subject</h3>
+                    <hr class="hr">
+                </header>
+                <?php
+                include "../connection/connector.php";
+                $class = $_GET['class'];
+                $subject = $_GET['subject'];
+                $subjects = mysqli_fetch_all(mysqli_query($con, "SELECT `subject id` FROM `subject`"), MYSQLI_ASSOC);
+                $extra = array_values(mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject 1`, `subject 2`, `subject 3`, `subject 4`, `subject 5`, `subject 6` FROM `class and subjects` WHERE `class` = '$class'")));
+                array_splice($extra,substr($subject,8)-1,1);
+                for($i=count($subjects)-1;$i>=0;$i--){
+                    if(in_array($subjects[$i]['subject id'],$extra)){
+                        array_splice($subjects,$i,1);
+                    }
+                }
+                ?>
+                <form action="<?php echo htmlspecialchars("subject allot.php") ?>" method="get"></form>
+                    <div class="mb-3">
+                        <h6 class="h6 fw-bold">Class</h6>
+                        <div class="form-control shadow-none p-3"><?php echo htmlspecialchars($class) ?></div>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="h6 fw-bold">Subject</h6>
+                        <div class="form-control shadow-none p-3"><?php echo htmlspecialchars($subject) ?></div>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="h6 fw-bold">Select Subject</h6>
+                        <select name="subjectName" class="text-secondary p-3 rounded-2 shadow-none w-100">
+                            <?php
+                            foreach ($subjects as $sub) {
+                                $subId = $sub['subject id'];
+                                $subName = mysqli_fetch_assoc(mysqli_query($con, "SELECT `subject name` FROM `subject` WHERE `subject id`='$subId'"));
+                                $subName = "($subId) ".$subName['subject name'];
+                                ?>
+                                <option value="<?php echo $subId ?>"><?php echo $subName ?></option>
+                            <?php }
+                            ?>
+                        </select>
+                        <input type="hidden" class="d-none" name="class" value="<?php echo $class ?>">
+                        <input type="hidden" class="d-none" name="subject" value="<?php echo $subject ?>">
+                    </div>
+                    <button name="submit" class="btn btn-secondary px-5 py-3 shadow-none">Allot</button>
+                </form>
             </div>
         </div>
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

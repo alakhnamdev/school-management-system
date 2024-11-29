@@ -14,26 +14,18 @@
 <body>
     <div class="p-3">
         <div class="p-3 rounded-4 border border-2">
-            <table class="table caption-top">
-                <caption class="h1 fw-bold">Users</caption>
-                <thead class="table-light">
-                    <tr>
-                        <th>Select Users</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    <tr>
-                        <td>
-                            <button class="btn border-0"><a class="btn btn-dark shadow-none text-decoration-none text-light" href="./manage users.php?user=student">Students</a></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="btn border-0"><a class="btn btn-dark shadow-none text-decoration-none text-light" href="./manage users.php?user=coordinator">Coordinators</a></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <header>
+                <h3 class="h3 fw-bold">Users</h3>
+                <hr class="hr">
+            </header>
+            <div class="d-flex">                
+                <div class="mb-3">
+                    <button class="btn border-0"><a class="btn btn-dark shadow-none text-decoration-none text-light p-3" href="./manage users.php?user=coordinator">Coordinators</a></button>
+                </div>
+                <div class="mb-3">
+                    <button class="btn border-0"><a class="btn btn-dark shadow-none text-decoration-none text-light p-3" href="./manage users.php?user=student">Students</a></button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

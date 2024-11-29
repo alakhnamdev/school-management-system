@@ -28,15 +28,15 @@
     <div class="p-3">
         <div class="p-3 rounded-4 border border-2">
             <header>    
-                <h1 class="h1 fw-bold">Academics</h1>
+                <h3 class="h3 fw-bold">Academics</h3>
                 <hr class="hr">
             </header>
             <div class="d-flex gap-3">
-                <a href="marks.php?view=subject" class="text-decoration-none bg-light border border-3 border-dark rounded-3">
-                    <button class="btn text-dark p-5"><div class="h3 fw-bold">By Subject</div></button>
+                <a href="marks.php?view=subject" class="text-decoration-none bg-dark rounded-3">
+                    <button class="btn text-light p-3">By Subject</button>
                 </a>
-                <a href="marks.php?view=class"class="text-decoration-none bg-light border border-3 border-dark rounded-3">
-                    <button class="btn text-dark p-5"><div class="h3 fw-bold">By Class</div></button>
+                <a href="marks.php?view=class"class="text-decoration-none bg-dark rounded-3">
+                    <button class="btn text-light p-3">By Class</button>
                 </a>
             </div>
         </div>

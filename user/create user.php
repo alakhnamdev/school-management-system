@@ -95,35 +95,35 @@ if (isset($_POST['submit'])) {
     <div class="p-3">
         <div class="p-3 border border-2 rounded-3">
             <header>
-                <h1 class="h1 fw-bold">Create User</h1>
+                <h3 class="h3 fw-bold">Create User</h3>
                 <hr class="hr">
             </header>
             <form method="post" action="<?php echo htmlspecialchars("create user.php"); ?>">
                 <div class="mb-3">
-                    <h4 class="h4 fw-bold">Username</h4>
-                    <input type="text" class="form-control shadow-none" id="username" disabled>
+                    <h6 class="h6 fw-bold">Username</h6>
+                    <input type="text" class="form-control shadow-none p-3" id="username" disabled>
                 </div>
                 <div class="mb-3">
-                    <h4 class="h4 fw-bold">Role</h4>
+                    <h6 class="h6 fw-bold">Role</h6>
                     <select name="role"
-                        class="w-100 px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2"
+                        class="w-100 px-2 text-secondary p-3 rounded-2 shadow-none border border-2"
                         onchange="updateUsername(this)">
                         <option value="student" selected>Student</option>
                         <option value="coordinator">Coordinator</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <h4 class="h4 fw-bold">Password</h4>
-                    <div class="rounded-2 border border-2 d-flex border-secondary">
-                        <input type="text" class="form-control shadow-none border-0 shadow-none" placeholder="password"
+                    <h6 class="h6 fw-bold">Password</h6>
+                    <div class="rounded-2 border border-2 d-flex">
+                        <input type="text" class="form-control shadow-none border-0 shadow-none p-3" placeholder="password"
                             name="password" id="password" value="alakh@2004" required>
-                        <div id="show" class="btn border-0" onclick="visibility(this)">hide</div><br>
+                        <div id="show" class="p-3" style="cursor:pointer;" onclick="visibility(this)">hide</div>
                     </div>
                 </div>
                 <div class="mb-3" id="class">
-                    <h4 class="h4 fw-bold">Select Class</h4>
+                    <h6 class="h6 fw-bold">Select Class</h6>
                     <select name="class"
-                        class="w-100 px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2"
+                        class="w-100 px-2 text-secondary p-3 rounded-2 shadow-none border border-2"
                         id="classes">
                         <?php
                         include '../connection/connector.php';
@@ -136,7 +136,7 @@ if (isset($_POST['submit'])) {
                     </select>
                 </div>
                 <div>
-                    <button name="submit" class="btn btn-dark shadow-none">Submit</button>
+                    <button name="submit" class="btn btn-dark shadow-none p-3 px-5">Submit</button>
                 </div>
             </form>
         </div>

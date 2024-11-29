@@ -77,22 +77,22 @@ else{
     <div class="p-3">
         <div class="p-3 rounded-4 border border-2">
             <header>
-                <h1 class="h1 fw-bold">Select Class</h1>
+                <h3 class="h3 fw-bold">Select Class</h3>
                 <hr class="hr">
             </header>
             <form action="<?php echo htmlspecialchars("class.php")?>" method="get">
                 <div class="mb-3">
-                    <h4 class="h4 fw-bold">Username</h4>
-                    <input class="form-control disabled" value="<?php echo htmlspecialchars($_GET['user'])?>" disabled>
+                    <h6 class="h6 fw-bold">Username</h6>
+                    <input class="form-control disabled p-3" value="<?php echo htmlspecialchars($_GET['user'])?>" disabled>
                     <input type="hidden" name="username" value="<?php echo htmlspecialchars($_GET['user'])?>">
                 </div>
                 <div class="mb-3">
-                    <h4 class="h4 fw-bold">Role</h4>
-                    <input class="form-control disabled" value="<?php echo htmlentities($role)?>" disabled>
+                    <h6 class="h6 fw-bold">Role</h6>
+                    <input class="form-control disabled p-3" value="<?php echo htmlentities($role)?>" disabled>
                 </div>
                 <div class="mb-3">
-                    <h4 class="h4 fw-bold">Select Class</h4>
-                    <select name="class" class="px-2 text-secondary border-secondary py-1 rounded-2 shadow-none border border-2" required>
+                    <h6 class="h6 fw-bold">Select Class</h6>
+                    <select name="class" class="text-secondary border-secondary p-3 rounded-2 shadow-none border border-2 w-100" required>
                         <?php
                         include '../connection/connector.php';
                         $classes = mysqli_fetch_all(mysqli_query($con, "SELECT `class` FROM `class and subjects` ORDER BY `id` ASC"), MYSQLI_ASSOC);
@@ -104,7 +104,7 @@ else{
                     </select>
                 </div>
                 <div>
-                    <button name="submit" class="btn btn-dark shadow-none">Submit</button>
+                    <button name="submit" class="btn btn-dark shadow-none p-3 px-5">Submit</button>
                 </div>
             </form>
         </div>

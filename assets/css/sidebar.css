@@ -1,11 +1,11 @@
 #navbar{
-    height: 60px;
+    height: 80px;
 }
 #navbar h1{
-    font-size: 40px;
+    font-size: 50px;
 }
 #sidebar{
-    margin-top: 60px;
+    margin-top: 80px;
 }
 #navbar,#sidebar{
     left: 0;

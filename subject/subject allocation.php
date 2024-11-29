@@ -21,7 +21,7 @@
     <div class="p-3">
         <div class="p-3 rounded-4 border border-2">
             <table class="table table-hover caption-top">
-                <caption class="h1 fw-bold">Subject Allocation</caption>
+                <caption class="h3 fw-bold">Subject Allocation</caption>
                 <thead class="table-light">
                     <tr>
                         <th>Id</th>
@@ -47,7 +47,7 @@
                         for($i=1;$i<=6;$i++){
                             ?>
                             <td>
-                                <div class="bg-secondary text-light p-2 mb-1 rounded-3"><?php 
+                                <div class="bg-light p-3 mb-2 rounded-3"><?php 
                                 $subName = $sub["subject $i"];
                                 $subName = mysqli_fetch_assoc(mysqli_query($con,"SELECT `subject name` FROM subject WHERE `subject id` = '$subName'"));
                                 echo htmlspecialchars($subName == null ? "Not Selected " : $subName['subject name']);?>
