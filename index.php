@@ -10,12 +10,23 @@ function verify($con, $username, $password)
         if ($verified) {
             session_start();
             $_SESSION['username'] = $username;
-            ?>
-            <script>
-                alert("Welcome User");
-                window.open("dashboard", "_self");
-            </script>
-            <?php
+            if($username=="admin"){            
+                ?>
+                <script>
+                    alert("Welcome Admin");
+                    window.open("dashboard", "_self");
+                </script>
+                <?php
+            }
+            else{
+                $openUser = str_contains($_SESSION['username'],"CRD") ? "coordinator" : "student";
+                ?>
+                <script>
+                    alert("Welcome <?php echo $openUser?>");
+                    window.open("<?php echo $openUser?>", "_self");
+                </script>
+                <?php
+            }
         } else {
             echo '<script>alert("Wrong Password")</script>';
         }
@@ -23,8 +34,29 @@ function verify($con, $username, $password)
         echo '<script>alert("No User Found!")</script>';
     }
 }
-if (isset($_POST['submit'])) {
-    verify($con, $_POST['username'], $_POST['password']);
+session_start();
+if(!$_SESSION['username']){
+    if (isset($_POST['submit'])) {
+        verify($con, $_POST['username'], $_POST['password']);
+    }
+}
+else{
+    $username = $_SESSION['username'];
+    if($username=="admin"){            
+        ?>
+        <script>
+            window.open("dashboard", "_self");
+        </script>
+        <?php
+    }
+    else{
+        $openUser = str_contains($_SESSION['username'],"CRD") ? "coordinator" : "student";
+        ?>
+        <script>
+            window.open("<?php echo $openUser?>", "_self");
+        </script>
+        <?php
+    }
 }
 ?>
 <!DOCTYPE html>

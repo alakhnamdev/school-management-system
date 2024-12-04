@@ -1,21 +1,18 @@
-<?php
+<?php include "../sidebar/sidebar.php";?><?php
 include '../connection/connector.php';
-include "../sidebar/sidebar crd.php";
-if(isset($_GET['subject'])){
-    $subject = $_GET['subject'];
-    $body = $_GET['body'];
-    $createNotice = mysqli_query($con,"INSERT INTO `notice`(`subject`,`body`) VAlUE ('$subject','$body')");
-    if($createNotice){
-        ?>
+if (isset($_GET['command'])){
+    $notice = $_GET['noticeId'];
+    $deleteNotice = mysqli_query($con, "DELETE FROM `notice` WHERE `id` = '$notice'");
+    if ($deleteNotice) {
+    ?>
         <script>
-            alert("Notice Posted");
-            window.open( "./","_self");
+            alert("Notice Delete");
+            window.open("./", "_self");
         </script>
-        <?php
+    <?php
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,20 +38,32 @@ if(isset($_GET['subject'])){
             <header>
                 <h3 class="h3 fw-bold">Post Notice</h3>
                 <hr class="hr">
-            </header>
-            <form action="<?php echo htmlspecialchars("create notice.php")?>" method="get">
-                <div class="mb-3">
-                    <h6 class="h6 fw-bold">Subject</h6>
-                    <input class="form-control shadow-none p-3" name="subject" value="" placeholder="subject" required>
+                </header>
+            <?php 
+            include '../connection/connector.php';
+            $notices = mysqli_fetch_all(mysqli_query($con,"SELECT * FROM `notice` ORDER BY `id` DESC"),MYSQLI_ASSOC);
+            foreach($notices as $notice){
+                ?>                
+                <div class="bg-white p-3 mb-3 rounded-3 border">
+                    <div class="mb-2 d-flex">
+                        <h6 class="h6 fw-bold">Date : <?php echo htmlspecialchars($notice['date'])?></h6>
+                    </div>
+                        <hr>
+                    <div class="mb-2 d-flex">
+                        <h6 class="h6 fw-bold">Subject : <?php echo htmlspecialchars($notice['subject'])?></h6>
+                    </div>
+                        <hr>
+                    <div class="mb-2">
+                        <div><?php echo htmlspecialchars($notice['body'])?></div>
+                    </div>
+                    <hr>
+                    <div class="mb-2">
+                        <div><a href="index.php?command=delete&noticeId=<?php echo urlencode($notice['id'])?>" class="text-decoration-none bg-danger text-light rounded-3 p-1 px-3 shadow-none">Delete</a></div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <h6 class="h6 fw-bold">Body</h6>
-                    <textarea class="form-control shadow-none p-3" name="body" style="height:250px; resize:none;" value="" placeholder="body" required></textarea>
-                </div>
-                <div>
-                    <button name="submit" class="btn btn-dark shadow-none p-3 px-5">Post</button>
-                </div>
-            </form>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </body>
