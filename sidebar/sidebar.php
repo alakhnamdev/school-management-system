@@ -32,7 +32,7 @@ else if($_SESSION['username']=="admin"){
                     <button class="btn btn-dark mb-3 text-start border-0 shadow-none rounded-3 bg-light text-secondary fw-semibold" style="position: absolute; right: 10px; top: 20px;" onclick="openPage('../logout')"><img src="../assets/svg/logout.svg" style="filter: invert(1); height: 30px;" class="opacity-75" alt="menu"></button>
                 </div>
             </nav>
-            <div id="sidebar" class="position-fixed top-0 vh-100 bg-white p-3 overflow-hidden">
+            <div id="sidebar" class="position-fixed top-0 vh-100 bg-white p-3 overflow-hidden z-1">
                 <div>
                     <button class="accordion-button collapsed shadow-none p-1 rounded-3 bg-light text-secondary p-3 mb-2 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" onclick="openPage('../dashboard/index.php')">
                         Dashboard
@@ -116,11 +116,17 @@ else if($_SESSION['username']=="admin"){
             <script>
                 let sidebar = document.getElementById("sidebar");
                 sidebar.style.width = "250px";
-                document.body.style.marginLeft = "250px";
+                sidebar.style.transform = "translateX(-250px)";
+                if(screen.width>600){
+                    sidebar.style.transform = "translateX(0px)";
+                    document.body.style.marginLeft = "250px";
+                }
                 sidebar.style.transition = "all 0.25s ease";
                 let action = (event) => {
                     sidebar.style.transform = sidebar.style.transform == "translateX(-250px)" ? "translateX(0px)" : "translateX(-250px)";
-                    document.body.style.marginLeft = document.body.style.marginLeft=="250px" ? "0px" : "250px";
+                    if(screen.width>600){
+                        document.body.style.marginLeft = document.body.style.marginLeft=="250px" ? "0px" : "250px";
+                    }
                 }
                 let openPage = link => {
                     window.open(link,"_self");

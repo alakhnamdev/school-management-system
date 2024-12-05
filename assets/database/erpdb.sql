@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2024 at 09:25 PM
+-- Generation Time: Dec 04, 2024 at 03:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -177,7 +177,28 @@ INSERT INTO `credential` (`id`, `username`, `password`, `role`) VALUES
 (58, '24SCHSTD26', '$2y$10$rkPPWw7nb/P30ph2RkvK4uO9VOUpUA0fKLWUCkfdzxhSEHZklU5CK', 'student'),
 (59, '24SCHCRD24', '$2y$10$hrDgB3Tjwm0ycy9H3QPShOnhKkYesoldSOVg8./hDBThvzxea9pgO', 'coordinator'),
 (60, '24SCHSTD27', '$2y$10$UmuaQw260qWW746./lwHtuYE68sfHYgmI..2ij0fA8LqJh0Lgy1ra', 'student'),
-(61, '24SCHSTD28', '$2y$10$vvk.5kwtGbBFe/Tou.sj3uTs.DALDNxg2zM1aOl.ZWc2HFPYyxn0q', 'student');
+(61, '24SCHSTD28', '$2y$10$vvk.5kwtGbBFe/Tou.sj3uTs.DALDNxg2zM1aOl.ZWc2HFPYyxn0q', 'student'),
+(62, '24SCHSTD29', '$2y$10$5PNOOHE1wT.9GDVprTpzDeOunkjYrrH7D1sT9U3hDFVwe9oUc.v7O', 'student');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notice`
+--
+
+CREATE TABLE `notice` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(100) DEFAULT NULL,
+  `body` varchar(500) DEFAULT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `notice`
+--
+
+INSERT INTO `notice` (`id`, `subject`, `body`, `date`) VALUES
+(2, 'first notice', 'this is the first notice', '2024-11-28 23:44:04');
 
 -- --------------------------------------------------------
 
@@ -254,7 +275,8 @@ INSERT INTO `student` (`id`, `student id`, `student name`, `class`, `subject 1`,
 (27, '24SCHSTD25', NULL, 'Class 1', 'SUB001', 'SUB002', 'SUB003', 'SUB004', 'SUB005', 'SUB006'),
 (28, '24SCHSTD26', NULL, 'Class 11 ART', 'SUB001', 'SUB002', 'SUB003', 'SUB004', 'SUB005', 'SUB014'),
 (29, '24SCHSTD27', NULL, 'Class 1', 'SUB001', 'SUB002', 'SUB003', 'SUB004', 'SUB005', 'SUB006'),
-(30, '24SCHSTD28', NULL, 'Class 11 ART', 'SUB001', 'SUB002', 'SUB003', 'SUB004', 'SUB005', 'SUB014');
+(30, '24SCHSTD28', NULL, 'Class 11 ART', 'SUB001', 'SUB002', 'SUB003', 'SUB004', 'SUB005', 'SUB014'),
+(31, '24SCHSTD29', NULL, 'Class 1', 'SUB001', 'SUB002', 'SUB003', 'SUB004', 'SUB005', 'SUB006');
 
 -- --------------------------------------------------------
 
@@ -274,35 +296,36 @@ CREATE TABLE `sub001` (
 --
 
 INSERT INTO `sub001` (`id`, `student id`, `attendance`, `marks`) VALUES
-(6, '24SCHSTD0', NULL, NULL),
-(7, '24SCHSTD1', NULL, NULL),
-(8, '24SCHSTD2', NULL, NULL),
-(9, '24SCHSTD3', NULL, NULL),
-(10, '24SCHSTD4', NULL, NULL),
-(11, '24SCHSTD5', NULL, NULL),
-(12, '24SCHSTD6', NULL, NULL),
-(13, '24SCHSTD7', NULL, NULL),
-(14, '24SCHSTD8', NULL, NULL),
-(15, '24SCHSTD9', NULL, NULL),
-(16, '24SCHSTD10', NULL, NULL),
-(17, '24SCHSTD11', NULL, NULL),
-(18, '24SCHSTD12', NULL, NULL),
-(19, '24SCHSTD13', NULL, NULL),
-(20, '24SCHSTD14', NULL, NULL),
-(21, '24SCHSTD15', NULL, NULL),
-(22, '24SCHSTD16', NULL, NULL),
-(23, '24SCHSTD17', NULL, NULL),
-(24, '24SCHSTD18', NULL, NULL),
-(25, '24SCHSTD19', NULL, NULL),
-(26, '24SCHSTD20', NULL, NULL),
-(27, '24SCHSTD21', NULL, NULL),
-(28, '24SCHSTD22', NULL, NULL),
-(29, '24SCHSTD23', NULL, NULL),
-(30, '24SCHSTD24', NULL, NULL),
-(31, '24SCHSTD25', NULL, NULL),
-(32, '24SCHSTD26', NULL, NULL),
-(33, '24SCHSTD27', NULL, NULL),
-(34, '24SCHSTD28', NULL, NULL);
+(6, '24SCHSTD0', 1, 1),
+(7, '24SCHSTD1', 1, 1),
+(8, '24SCHSTD2', 1, 1),
+(9, '24SCHSTD3', 1, 1),
+(10, '24SCHSTD4', 1, 1),
+(11, '24SCHSTD5', 1, 1),
+(12, '24SCHSTD6', 1, 1),
+(13, '24SCHSTD7', 1, 1),
+(14, '24SCHSTD8', 1, 1),
+(15, '24SCHSTD9', 1, 1),
+(16, '24SCHSTD10', 1, 1),
+(17, '24SCHSTD11', 1, 1),
+(18, '24SCHSTD12', 1, 1),
+(19, '24SCHSTD13', 1, 1),
+(20, '24SCHSTD14', 1, 1),
+(21, '24SCHSTD15', 1, 1),
+(22, '24SCHSTD16', 1, 1),
+(23, '24SCHSTD17', 1, 1),
+(24, '24SCHSTD18', 1, 1),
+(25, '24SCHSTD19', 1, 1),
+(26, '24SCHSTD20', 1, 1),
+(27, '24SCHSTD21', 1, 1),
+(28, '24SCHSTD22', 1, 1),
+(29, '24SCHSTD23', 1, 1),
+(30, '24SCHSTD24', 1, 1),
+(31, '24SCHSTD25', 1, 1),
+(32, '24SCHSTD26', 1, 1),
+(33, '24SCHSTD27', 1, 1),
+(34, '24SCHSTD28', 1, 1),
+(35, '24SCHSTD29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -322,35 +345,36 @@ CREATE TABLE `sub002` (
 --
 
 INSERT INTO `sub002` (`id`, `student id`, `attendance`, `marks`) VALUES
-(6, '24SCHSTD0', NULL, NULL),
-(7, '24SCHSTD1', NULL, NULL),
-(8, '24SCHSTD2', NULL, NULL),
-(9, '24SCHSTD3', NULL, NULL),
-(10, '24SCHSTD4', NULL, NULL),
-(11, '24SCHSTD5', NULL, NULL),
-(12, '24SCHSTD6', NULL, NULL),
-(13, '24SCHSTD7', NULL, NULL),
-(14, '24SCHSTD8', NULL, NULL),
-(15, '24SCHSTD9', NULL, NULL),
-(16, '24SCHSTD10', NULL, NULL),
-(17, '24SCHSTD11', NULL, NULL),
-(18, '24SCHSTD12', NULL, NULL),
-(19, '24SCHSTD13', NULL, NULL),
-(20, '24SCHSTD14', NULL, NULL),
-(21, '24SCHSTD15', NULL, NULL),
-(22, '24SCHSTD16', NULL, NULL),
-(23, '24SCHSTD17', NULL, NULL),
-(24, '24SCHSTD18', NULL, NULL),
-(25, '24SCHSTD19', NULL, NULL),
-(26, '24SCHSTD20', NULL, NULL),
-(27, '24SCHSTD21', NULL, NULL),
-(28, '24SCHSTD22', NULL, NULL),
-(29, '24SCHSTD23', NULL, NULL),
-(30, '24SCHSTD24', NULL, NULL),
-(31, '24SCHSTD25', NULL, NULL),
-(32, '24SCHSTD26', NULL, NULL),
-(33, '24SCHSTD27', NULL, NULL),
-(34, '24SCHSTD28', NULL, NULL);
+(6, '24SCHSTD0', 1, 1),
+(7, '24SCHSTD1', 1, 1),
+(8, '24SCHSTD2', 1, 1),
+(9, '24SCHSTD3', 1, 1),
+(10, '24SCHSTD4', 1, 1),
+(11, '24SCHSTD5', 1, 1),
+(12, '24SCHSTD6', 1, 1),
+(13, '24SCHSTD7', 1, 1),
+(14, '24SCHSTD8', 1, 1),
+(15, '24SCHSTD9', 1, 1),
+(16, '24SCHSTD10', 1, 1),
+(17, '24SCHSTD11', 1, 1),
+(18, '24SCHSTD12', 1, 1),
+(19, '24SCHSTD13', 5, 1),
+(20, '24SCHSTD14', 1, 1),
+(21, '24SCHSTD15', 1, 1),
+(22, '24SCHSTD16', 1, 1),
+(23, '24SCHSTD17', 1, 1),
+(24, '24SCHSTD18', 1, 1),
+(25, '24SCHSTD19', 1, 1),
+(26, '24SCHSTD20', 1, 1),
+(27, '24SCHSTD21', 1, 1),
+(28, '24SCHSTD22', 1, 1),
+(29, '24SCHSTD23', 1, 1),
+(30, '24SCHSTD24', 5, 1),
+(31, '24SCHSTD25', 1, 1),
+(32, '24SCHSTD26', 1, 1),
+(33, '24SCHSTD27', 1, 1),
+(34, '24SCHSTD28', 1, 1),
+(35, '24SCHSTD29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -370,35 +394,36 @@ CREATE TABLE `sub003` (
 --
 
 INSERT INTO `sub003` (`id`, `student id`, `attendance`, `marks`) VALUES
-(6, '24SCHSTD0', NULL, NULL),
-(7, '24SCHSTD1', NULL, NULL),
-(8, '24SCHSTD2', NULL, NULL),
-(9, '24SCHSTD3', NULL, NULL),
-(10, '24SCHSTD4', NULL, NULL),
-(11, '24SCHSTD5', NULL, NULL),
-(12, '24SCHSTD6', NULL, NULL),
-(13, '24SCHSTD7', NULL, NULL),
-(14, '24SCHSTD8', NULL, NULL),
-(15, '24SCHSTD9', NULL, NULL),
-(16, '24SCHSTD10', NULL, NULL),
-(17, '24SCHSTD11', NULL, NULL),
-(18, '24SCHSTD12', NULL, NULL),
-(19, '24SCHSTD13', NULL, NULL),
-(20, '24SCHSTD14', NULL, NULL),
-(21, '24SCHSTD15', NULL, NULL),
-(22, '24SCHSTD16', NULL, NULL),
-(23, '24SCHSTD17', NULL, NULL),
-(24, '24SCHSTD18', NULL, NULL),
-(25, '24SCHSTD19', NULL, NULL),
-(26, '24SCHSTD20', NULL, NULL),
-(27, '24SCHSTD21', NULL, NULL),
-(28, '24SCHSTD22', NULL, NULL),
-(29, '24SCHSTD23', NULL, NULL),
-(30, '24SCHSTD24', NULL, NULL),
-(31, '24SCHSTD25', NULL, NULL),
-(32, '24SCHSTD26', NULL, NULL),
-(33, '24SCHSTD27', NULL, NULL),
-(34, '24SCHSTD28', NULL, NULL);
+(6, '24SCHSTD0', 1, 1),
+(7, '24SCHSTD1', 1, 1),
+(8, '24SCHSTD2', 1, 1),
+(9, '24SCHSTD3', 1, 1),
+(10, '24SCHSTD4', 1, 1),
+(11, '24SCHSTD5', 1, 1),
+(12, '24SCHSTD6', 1, 1),
+(13, '24SCHSTD7', 1, 1),
+(14, '24SCHSTD8', 1, 1),
+(15, '24SCHSTD9', 1, 1),
+(16, '24SCHSTD10', 1, 1),
+(17, '24SCHSTD11', 1, 1),
+(18, '24SCHSTD12', 1, 1),
+(19, '24SCHSTD13', 1, 1),
+(20, '24SCHSTD14', 1, 1),
+(21, '24SCHSTD15', 1, 1),
+(22, '24SCHSTD16', 1, 1),
+(23, '24SCHSTD17', 1, 1),
+(24, '24SCHSTD18', 1, 1),
+(25, '24SCHSTD19', 1, 1),
+(26, '24SCHSTD20', 1, 1),
+(27, '24SCHSTD21', 1, 1),
+(28, '24SCHSTD22', 1, 1),
+(29, '24SCHSTD23', 1, 1),
+(30, '24SCHSTD24', 1, 1),
+(31, '24SCHSTD25', 1, 1),
+(32, '24SCHSTD26', 1, 1),
+(33, '24SCHSTD27', 1, 1),
+(34, '24SCHSTD28', 1, 1),
+(35, '24SCHSTD29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -418,35 +443,36 @@ CREATE TABLE `sub004` (
 --
 
 INSERT INTO `sub004` (`id`, `student id`, `attendance`, `marks`) VALUES
-(6, '24SCHSTD0', NULL, NULL),
-(7, '24SCHSTD1', NULL, NULL),
-(8, '24SCHSTD2', NULL, NULL),
-(9, '24SCHSTD3', NULL, NULL),
-(10, '24SCHSTD4', NULL, NULL),
-(11, '24SCHSTD5', NULL, NULL),
-(12, '24SCHSTD6', NULL, NULL),
-(13, '24SCHSTD7', NULL, NULL),
-(14, '24SCHSTD8', NULL, NULL),
-(15, '24SCHSTD9', NULL, NULL),
-(16, '24SCHSTD10', NULL, NULL),
-(17, '24SCHSTD11', NULL, NULL),
-(18, '24SCHSTD12', NULL, NULL),
-(19, '24SCHSTD13', NULL, NULL),
-(20, '24SCHSTD14', NULL, NULL),
-(21, '24SCHSTD15', NULL, NULL),
-(22, '24SCHSTD16', NULL, NULL),
-(23, '24SCHSTD17', NULL, NULL),
-(24, '24SCHSTD18', NULL, NULL),
-(25, '24SCHSTD19', NULL, NULL),
-(26, '24SCHSTD20', NULL, NULL),
-(27, '24SCHSTD21', NULL, NULL),
-(28, '24SCHSTD22', NULL, NULL),
-(29, '24SCHSTD23', NULL, NULL),
-(30, '24SCHSTD24', NULL, NULL),
-(31, '24SCHSTD25', NULL, NULL),
-(32, '24SCHSTD26', NULL, NULL),
-(33, '24SCHSTD27', NULL, NULL),
-(34, '24SCHSTD28', NULL, NULL);
+(6, '24SCHSTD0', 1, 1),
+(7, '24SCHSTD1', 1, 1),
+(8, '24SCHSTD2', 1, 1),
+(9, '24SCHSTD3', 1, 1),
+(10, '24SCHSTD4', 1, 1),
+(11, '24SCHSTD5', 1, 1),
+(12, '24SCHSTD6', 1, 1),
+(13, '24SCHSTD7', 1, 1),
+(14, '24SCHSTD8', 1, 1),
+(15, '24SCHSTD9', 1, 1),
+(16, '24SCHSTD10', 1, 1),
+(17, '24SCHSTD11', 1, 1),
+(18, '24SCHSTD12', 1, 1),
+(19, '24SCHSTD13', 1, 1),
+(20, '24SCHSTD14', 1, 1),
+(21, '24SCHSTD15', 1, 1),
+(22, '24SCHSTD16', 1, 1),
+(23, '24SCHSTD17', 1, 1),
+(24, '24SCHSTD18', 1, 1),
+(25, '24SCHSTD19', 1, 1),
+(26, '24SCHSTD20', 1, 1),
+(27, '24SCHSTD21', 1, 1),
+(28, '24SCHSTD22', 1, 1),
+(29, '24SCHSTD23', 1, 1),
+(30, '24SCHSTD24', 1, 1),
+(31, '24SCHSTD25', 1, 1),
+(32, '24SCHSTD26', 1, 1),
+(33, '24SCHSTD27', 1, 1),
+(34, '24SCHSTD28', 1, 1),
+(35, '24SCHSTD29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -466,35 +492,36 @@ CREATE TABLE `sub005` (
 --
 
 INSERT INTO `sub005` (`id`, `student id`, `attendance`, `marks`) VALUES
-(6, '24SCHSTD0', NULL, NULL),
-(7, '24SCHSTD1', NULL, NULL),
-(8, '24SCHSTD2', NULL, NULL),
-(9, '24SCHSTD3', NULL, NULL),
-(10, '24SCHSTD4', NULL, NULL),
-(11, '24SCHSTD5', NULL, NULL),
-(12, '24SCHSTD6', NULL, NULL),
-(13, '24SCHSTD7', NULL, NULL),
-(14, '24SCHSTD8', NULL, NULL),
-(15, '24SCHSTD9', NULL, NULL),
-(16, '24SCHSTD10', NULL, NULL),
-(17, '24SCHSTD11', NULL, NULL),
-(18, '24SCHSTD12', NULL, NULL),
-(19, '24SCHSTD13', NULL, NULL),
-(20, '24SCHSTD14', NULL, NULL),
-(21, '24SCHSTD15', NULL, NULL),
-(22, '24SCHSTD16', NULL, NULL),
-(23, '24SCHSTD17', NULL, NULL),
-(24, '24SCHSTD18', NULL, NULL),
-(25, '24SCHSTD19', NULL, NULL),
-(26, '24SCHSTD20', NULL, NULL),
-(27, '24SCHSTD21', NULL, NULL),
-(28, '24SCHSTD22', NULL, NULL),
-(29, '24SCHSTD23', NULL, NULL),
-(30, '24SCHSTD24', NULL, NULL),
-(31, '24SCHSTD25', NULL, NULL),
-(32, '24SCHSTD26', NULL, NULL),
-(33, '24SCHSTD27', NULL, NULL),
-(34, '24SCHSTD28', NULL, NULL);
+(6, '24SCHSTD0', 1, 1),
+(7, '24SCHSTD1', 1, 1),
+(8, '24SCHSTD2', 1, 1),
+(9, '24SCHSTD3', 1, 1),
+(10, '24SCHSTD4', 1, 1),
+(11, '24SCHSTD5', 1, 1),
+(12, '24SCHSTD6', 1, 1),
+(13, '24SCHSTD7', 1, 1),
+(14, '24SCHSTD8', 1, 1),
+(15, '24SCHSTD9', 1, 1),
+(16, '24SCHSTD10', 1, 1),
+(17, '24SCHSTD11', 1, 1),
+(18, '24SCHSTD12', 1, 1),
+(19, '24SCHSTD13', 1, 1),
+(20, '24SCHSTD14', 1, 1),
+(21, '24SCHSTD15', 1, 1),
+(22, '24SCHSTD16', 1, 1),
+(23, '24SCHSTD17', 1, 1),
+(24, '24SCHSTD18', 1, 1),
+(25, '24SCHSTD19', 1, 1),
+(26, '24SCHSTD20', 1, 1),
+(27, '24SCHSTD21', 1, 1),
+(28, '24SCHSTD22', 1, 1),
+(29, '24SCHSTD23', 1, 1),
+(30, '24SCHSTD24', 1, 1),
+(31, '24SCHSTD25', 1, 1),
+(32, '24SCHSTD26', 1, 1),
+(33, '24SCHSTD27', 1, 1),
+(34, '24SCHSTD28', 1, 1),
+(35, '24SCHSTD29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -514,27 +541,28 @@ CREATE TABLE `sub006` (
 --
 
 INSERT INTO `sub006` (`id`, `student id`, `attendance`, `marks`) VALUES
-(5, '24SCHSTD0', NULL, NULL),
-(6, '24SCHSTD2', NULL, NULL),
-(7, '24SCHSTD3', NULL, NULL),
-(8, '24SCHSTD4', NULL, NULL),
-(9, '24SCHSTD5', NULL, NULL),
-(10, '24SCHSTD6', NULL, NULL),
-(11, '24SCHSTD7', NULL, NULL),
-(12, '24SCHSTD8', NULL, NULL),
-(13, '24SCHSTD9', NULL, NULL),
-(14, '24SCHSTD10', NULL, NULL),
-(15, '24SCHSTD12', NULL, NULL),
-(16, '24SCHSTD13', NULL, NULL),
-(17, '24SCHSTD14', NULL, NULL),
-(18, '24SCHSTD15', NULL, NULL),
-(19, '24SCHSTD16', NULL, NULL),
-(20, '24SCHSTD19', NULL, NULL),
-(21, '24SCHSTD21', NULL, NULL),
-(22, '24SCHSTD23', NULL, NULL),
-(23, '24SCHSTD24', NULL, NULL),
-(24, '24SCHSTD25', NULL, NULL),
-(25, '24SCHSTD27', NULL, NULL);
+(5, '24SCHSTD0', 1, 1),
+(6, '24SCHSTD2', 1, 1),
+(7, '24SCHSTD3', 1, 1),
+(8, '24SCHSTD4', 1, 1),
+(9, '24SCHSTD5', 1, 1),
+(10, '24SCHSTD6', 1, 1),
+(11, '24SCHSTD7', 1, 1),
+(12, '24SCHSTD8', 1, 1),
+(13, '24SCHSTD9', 1, 1),
+(14, '24SCHSTD10', 1, 1),
+(15, '24SCHSTD12', 1, 1),
+(16, '24SCHSTD13', 1, 1),
+(17, '24SCHSTD14', 1, 1),
+(18, '24SCHSTD15', 1, 1),
+(19, '24SCHSTD16', 1, 1),
+(20, '24SCHSTD19', 1, 1),
+(21, '24SCHSTD21', 1, 1),
+(22, '24SCHSTD23', 1, 1),
+(23, '24SCHSTD24', 1, 1),
+(24, '24SCHSTD25', 1, 1),
+(25, '24SCHSTD27', 1, 1),
+(26, '24SCHSTD29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -645,14 +673,14 @@ CREATE TABLE `sub014` (
 --
 
 INSERT INTO `sub014` (`id`, `student id`, `attendance`, `marks`) VALUES
-(2, '24SCHSTD1', NULL, NULL),
-(3, '24SCHSTD11', NULL, NULL),
-(4, '24SCHSTD17', NULL, NULL),
-(5, '24SCHSTD18', NULL, NULL),
-(6, '24SCHSTD20', NULL, NULL),
-(7, '24SCHSTD22', NULL, NULL),
-(8, '24SCHSTD26', NULL, NULL),
-(9, '24SCHSTD28', NULL, NULL);
+(2, '24SCHSTD1', 1, 1),
+(3, '24SCHSTD11', 1, 1),
+(4, '24SCHSTD17', 1, 1),
+(5, '24SCHSTD18', 1, 1),
+(6, '24SCHSTD20', 1, 1),
+(7, '24SCHSTD22', 1, 1),
+(8, '24SCHSTD26', 1, 1),
+(9, '24SCHSTD28', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -831,7 +859,7 @@ CREATE TABLE `subject sessions` (
 
 INSERT INTO `subject sessions` (`id`, `subject id`, `session`) VALUES
 (1, 'SUB001', NULL),
-(2, 'SUB002', NULL),
+(2, 'SUB002', 5),
 (3, 'SUB003', NULL),
 (4, 'SUB004', NULL),
 (5, 'SUB005', NULL),
@@ -872,7 +900,7 @@ CREATE TABLE `usercount` (
 --
 
 INSERT INTO `usercount` (`student id`, `coordinator id`, `student`, `coordinator`) VALUES
-('24SCHSTD', '24SCHCRD', 29, 25);
+('24SCHSTD', '24SCHCRD', 30, 25);
 
 --
 -- Indexes for dumped tables
@@ -899,6 +927,12 @@ ALTER TABLE `coordinator`
 ALTER TABLE `credential`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `notice`
+--
+ALTER TABLE `notice`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `session`
@@ -1085,7 +1119,13 @@ ALTER TABLE `coordinator`
 -- AUTO_INCREMENT for table `credential`
 --
 ALTER TABLE `credential`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT for table `notice`
+--
+ALTER TABLE `notice`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `session`
@@ -1097,43 +1137,43 @@ ALTER TABLE `session`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `sub001`
 --
 ALTER TABLE `sub001`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `sub002`
 --
 ALTER TABLE `sub002`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `sub003`
 --
 ALTER TABLE `sub003`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `sub004`
 --
 ALTER TABLE `sub004`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `sub005`
 --
 ALTER TABLE `sub005`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `sub006`
 --
 ALTER TABLE `sub006`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `sub007`
@@ -1241,13 +1281,13 @@ ALTER TABLE `sub023`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `subject sessions`
 --
 ALTER TABLE `subject sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

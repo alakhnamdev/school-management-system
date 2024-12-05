@@ -1,17 +1,21 @@
-
 * {
-    font-family: poppins;
-    transition: all 0.25s ease;
+  font-family: poppins;
+  transition: all 0.25s ease;
 }
-body{
-    margin-top: 80px;
+
+body {
+  margin-top: 80px;
+  width: 1366px;
 }
-.poppins{
-    font-family: poppins;
+
+.poppins {
+  font-family: poppins;
 }
-.playfair{
-    font-family: playfair display;
+
+.playfair {
+  font-family: playfair display;
 }
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -19,9 +23,9 @@ body{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
@@ -30,5 +34,5 @@ body{
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
