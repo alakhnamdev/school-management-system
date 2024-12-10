@@ -1,0 +1,38 @@
+* {
+  font-family: poppins;
+  transition: all 0.25s ease;
+}
+
+body {
+  margin-top: 80px;
+  width: 1366px;
+}
+
+.poppins {
+  font-family: poppins;
+}
+
+.playfair {
+  font-family: playfair display;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
