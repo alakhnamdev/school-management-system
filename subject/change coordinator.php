@@ -2,8 +2,12 @@
 <?php
 include '../connection/connector.php';
 function updateCoordinator($con,$subId,$coordinator){
-    $update = mysqli_query($con,"UPDATE `subject` SET `coordinator id` = '$coordinator' WHERE `subject id` = '$subId'");
-    if($update){
+    $updateSubject = mysqli_query($con,"UPDATE `subject` SET `coordinator id` = '$coordinator' WHERE `subject id` = '$subId'");
+    $subName = mysqli_fetch_assoc(mysqli_query($con,"SELECT `subject name` FROM `subject` WHERE `subject id` = '$subId'"));
+    $subName = $subName['subject name'];
+    $updatePrevCoordinator = mysqli_query($con,"UPDATE `coordinator` SET `subject id` = NULL,`subject name`= NULL WHERE `subject id` = '$subId'");
+    $updateCoordinator = mysqli_query($con,"UPDATE `coordinator` SET `subject id` = '$subId',`subject name`='$subName' WHERE `coordinator id` = '$coordinator'");
+    if($updateSubject && $updateCoordinator && $updatePrevCoordinator){
         ?>
         <script>
             alert("Coordinator Updated Successfully");

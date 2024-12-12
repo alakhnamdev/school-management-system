@@ -15,13 +15,20 @@ if (!isset($_GET['user'])) {
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="../assets/datatables/dataTables.bootstrap5.min.css" rel="stylesheet">
 </head>
+
+<style>
+    body{
+        margin-top: 80px;
+    }
+</style>
 
 <body>
     <div class="p-3">
-        <div class="p-3 rounded-4 border border-2">
-            <div class=" table-responsive vh-100 overflow-auto">
-            <table class="table table-hover caption-top">
+        <div id="main" class="p-3 rounded-4 border border-2 overflow-hidden">
+            <div class="table-responsive p-1">
+            <table id="Table" class="table table-hover caption-top table-bordered">
                 <caption class="h3 fw-bold">Users</caption>
                 <thead class="table-light">
                     <?php
@@ -34,6 +41,7 @@ if (!isset($_GET['user'])) {
                         <th>Coordinator Name</th>
                         <th>Subject Id</th>
                         <th>Subject Name</th>
+                        <th>Manage</th>
                         <?php
                     } else {
                         ?>
@@ -47,6 +55,7 @@ if (!isset($_GET['user'])) {
                         <th>Subject 4</th>
                         <th>Subject 5</th>
                         <th>Subject 6</th>
+                        <th>Manage</th>
                         <?php
                     }
                     ?>
@@ -61,16 +70,17 @@ if (!isset($_GET['user'])) {
                         <tr>
                             <td><?php echo htmlspecialchars($cor["id"]) ?></td>
                             <td><?php echo htmlspecialchars($cor["$user id"]) ?></td>
-                            <td><?php echo htmlspecialchars(($cor["$user name"] == null) ? "None" : $cor["$user name"]) ?><a href="name.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-2">Edit</button></a></td>
+                            <td><?php echo htmlspecialchars(($cor["$user name"] == null) ? "None" : $cor["$user name"]) ?></td>
                             <?php
                             if ($user == "coordinator") {
                                 ?>
                                 <td><?php echo htmlspecialchars(($cor["subject id"] == null) ? "None" : $cor["subject id"]) ?></td>
                                 <td><?php echo htmlspecialchars(($cor["subject name"] == null) ? "None" : $cor["subject name"]) ?></td>
+                                <td><a href="name.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-2 my-1">Edit</button></a></td>
                                 <?php
                             } else {
                                 ?>
-                                <td><?php echo htmlspecialchars($cor["class"] == null) ? "None" : $cor["class"] ?><a href="class.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-2">Edit</button></a></td>
+                                <td><?php echo htmlspecialchars($cor["class"] == null) ? "None" : $cor["class"] ?></td>
                                 <?php 
                                 for($i=1;$i<=6;$i++){
                                     ?>
@@ -81,6 +91,10 @@ if (!isset($_GET['user'])) {
                                     <?php
                                 }
                                 ?>
+                                <td>
+                                    <a href="name.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-2 my-1">Edit Name</button></a>
+                                    <a href="class.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-2 my-1">Edit Class</button></a>
+                                </td>
                                 <?php
                             }
                             ?>
@@ -92,6 +106,15 @@ if (!isset($_GET['user'])) {
         </div>
         </div>
     </div>
+    <script src="../assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="../assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="../assets/datatables/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#Table').DataTable();
+        } );
+        let main = document.getElementById("main");
+    </script>
 </body>
 
 </html>
