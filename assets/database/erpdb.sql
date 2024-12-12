@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2024 at 12:07 PM
+-- Generation Time: Dec 12, 2024 at 08:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -101,7 +101,7 @@ INSERT INTO `coordinator` (`id`, `coordinator id`, `coordinator name`, `subject 
 (20, '24SCHCRD19', NULL, 'SUB020', 'Accountancy'),
 (21, '24SCHCRD20', NULL, 'SUB021', 'Business Studies'),
 (22, '24SCHCRD21', NULL, 'SUB022', 'Psychology'),
-(23, '24SCHCRD22', NULL, NULL, NULL),
+(23, '24SCHCRD22', NULL, 'SUB023', 'Fine Arts'),
 (24, '24SCHCRD23', NULL, NULL, NULL),
 (25, '24SCHCRD24', NULL, NULL, NULL);
 
@@ -198,7 +198,8 @@ CREATE TABLE `notice` (
 --
 
 INSERT INTO `notice` (`id`, `subject`, `body`, `date`) VALUES
-(2, 'first notice', 'this is the first notice', '2024-11-28 23:44:04');
+(2, 'first notice', 'this is the first notice', '2024-11-28 23:44:04'),
+(4, 'Second Notice', 'this is second notice', '2024-12-11 13:17:34');
 
 -- --------------------------------------------------------
 
@@ -296,13 +297,13 @@ CREATE TABLE `sub001` (
 --
 
 INSERT INTO `sub001` (`id`, `student id`, `attendance`, `marks`) VALUES
-(6, '24SCHSTD0', 1, 1),
-(7, '24SCHSTD1', 1, 1),
-(8, '24SCHSTD2', 1, 1),
+(6, '24SCHSTD0', 2, 100),
+(7, '24SCHSTD1', 1, 100),
+(8, '24SCHSTD2', 2, 98),
 (9, '24SCHSTD3', 1, 1),
 (10, '24SCHSTD4', 1, 1),
 (11, '24SCHSTD5', 1, 1),
-(12, '24SCHSTD6', 1, 1),
+(12, '24SCHSTD6', 2, 97),
 (13, '24SCHSTD7', 1, 1),
 (14, '24SCHSTD8', 1, 1),
 (15, '24SCHSTD9', 1, 1),
@@ -321,11 +322,11 @@ INSERT INTO `sub001` (`id`, `student id`, `attendance`, `marks`) VALUES
 (28, '24SCHSTD22', 1, 1),
 (29, '24SCHSTD23', 1, 1),
 (30, '24SCHSTD24', 1, 1),
-(31, '24SCHSTD25', 1, 1),
+(31, '24SCHSTD25', 2, 96),
 (32, '24SCHSTD26', 1, 1),
-(33, '24SCHSTD27', 1, 1),
+(33, '24SCHSTD27', 1, 95),
 (34, '24SCHSTD28', 1, 1),
-(35, '24SCHSTD29', 1, 1);
+(35, '24SCHSTD29', 1, 94);
 
 -- --------------------------------------------------------
 
@@ -345,13 +346,13 @@ CREATE TABLE `sub002` (
 --
 
 INSERT INTO `sub002` (`id`, `student id`, `attendance`, `marks`) VALUES
-(6, '24SCHSTD0', 1, 1),
+(6, '24SCHSTD0', 2, 98),
 (7, '24SCHSTD1', 1, 1),
-(8, '24SCHSTD2', 1, 1),
+(8, '24SCHSTD2', 2, 95),
 (9, '24SCHSTD3', 1, 1),
 (10, '24SCHSTD4', 1, 1),
 (11, '24SCHSTD5', 1, 1),
-(12, '24SCHSTD6', 1, 1),
+(12, '24SCHSTD6', 2, 97),
 (13, '24SCHSTD7', 1, 1),
 (14, '24SCHSTD8', 1, 1),
 (15, '24SCHSTD9', 1, 1),
@@ -370,7 +371,7 @@ INSERT INTO `sub002` (`id`, `student id`, `attendance`, `marks`) VALUES
 (28, '24SCHSTD22', 1, 1),
 (29, '24SCHSTD23', 1, 1),
 (30, '24SCHSTD24', 5, 1),
-(31, '24SCHSTD25', 1, 1),
+(31, '24SCHSTD25', 2, 1),
 (32, '24SCHSTD26', 1, 1),
 (33, '24SCHSTD27', 1, 1),
 (34, '24SCHSTD28', 1, 1),
@@ -858,8 +859,8 @@ CREATE TABLE `subject sessions` (
 --
 
 INSERT INTO `subject sessions` (`id`, `subject id`, `session`) VALUES
-(1, 'SUB001', NULL),
-(2, 'SUB002', 5),
+(1, 'SUB001', 2),
+(2, 'SUB002', 2),
 (3, 'SUB003', NULL),
 (4, 'SUB004', NULL),
 (5, 'SUB005', NULL),
@@ -1125,7 +1126,7 @@ ALTER TABLE `credential`
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `session`

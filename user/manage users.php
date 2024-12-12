@@ -76,7 +76,10 @@ if (!isset($_GET['user'])) {
                                 ?>
                                 <td><?php echo htmlspecialchars(($cor["subject id"] == null) ? "None" : $cor["subject id"]) ?></td>
                                 <td><?php echo htmlspecialchars(($cor["subject name"] == null) ? "None" : $cor["subject name"]) ?></td>
-                                <td><a href="name.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-2 my-1">Edit</button></a></td>
+                                <td>
+                                    <a href="name.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-1 my-1">Edit</button></a>
+                                    <a href="delete.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-danger p-0 px-2 my-1">Delete</button></a>
+                                </td>
                                 <?php
                             } else {
                                 ?>
@@ -94,6 +97,7 @@ if (!isset($_GET['user'])) {
                                 <td>
                                     <a href="name.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-2 my-1">Edit Name</button></a>
                                     <a href="class.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-dark p-0 px-2 mx-2 my-1">Edit Class</button></a>
+                                    <a href="delete.php?user=<?php echo htmlspecialchars($cor["$user id"])?>"><button class="btn btn-danger p-0 px-2 mx-2 my-1">Delete</button></a>
                                 </td>
                                 <?php
                             }
