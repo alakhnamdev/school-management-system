@@ -60,6 +60,23 @@
                         </a>
                     </div>
                 </div>
+                <div id="dcon" class="row">
+                    <div class="col mb-3 mx-1">
+                        <a href="../attendance/">
+                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Attendance</h5></button>
+                        </a>
+                    </div>
+                    <div class="col mb-3 mx-1">
+                        <a href="../academics/">
+                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Academics</h5></button>
+                        </a>
+                    </div>
+                    <div class="col mb-3 mx-1">
+                        <a href="../logout/">
+                            <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Logout</h5></button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -77,7 +77,7 @@ else if($_SESSION['username']=="admin"){
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse rounded-3" data-bs-parent="#accordionFlushExample">
                         <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../academics/index.php')">View Academics</button>
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../')">Update Academics</button>
+                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../academics/update marks.php')">Update Academics</button>
                         </div>
                     </div>
                     <!-- Sidebar Element -->

@@ -76,18 +76,47 @@ include '../connection/connector.php';
 //     }
 // }
 // createAllSubjectSessions($con);
-session_start();
-echo $_SESSION['username'];
-if(str_contains($_SESSION['username'],"STD")){
-    echo "student";
-}
+// session_start();
+// echo $_SESSION['username'];
+// if(str_contains($_SESSION['username'],"STD")){
+//     echo "student";
+// }
 // function getClasses($con,$subject){
 //     $classes = mysqli_fetch_all(mysqli_query($con,"SELECT * FROM `class and subjects`"),MYSQLI_ASSOC);
+//     $arr = [];
 //     foreach($classes as $cls){
 //         if(in_array($subject,$cls)){
-//             echo $cls['class']."\n";
+//             array_push($arr,$cls['class']);
 //         }
 //     }
+//     return $arr;
 // }
-// getClasses($con,"SUB001");
+// $arr = getClasses($con,"SUB001");
+// function subjectClasses($con){
+//     $subjects = mysqli_fetch_all(mysqli_query($con,"SELECT `subject id` FROM `subject`"),MYSQLI_ASSOC);
+//     $arr = [];
+//     foreach($subjects as $sub){
+//         $sub = $sub['subject id'];
+//         // array_push($arr,getClasses($con,$sub));
+//         $arr[$sub] = getClasses($con,$sub);
+//     }
+//     print_r($arr);
+//     return $arr;
+// }
+// function nonEmptySubjects($con){
+//     $subjects = mysqli_fetch_all(mysqli_query($con,"SELECT `subject id`,`subject name` FROM `subject`"),MYSQLI_ASSOC);
+//     $arr = [];
+//     foreach($subjects as $sub){
+//         $subName = $sub['subject name'];
+//         $sub = $sub['subject id'];
+//         $value = count(getClasses($con,$sub));
+//         if($value> 0){
+//             array_push($arr,[$subName,$sub]);
+//         }
+//     }
+//     print_r($arr);
+//     return count($arr);
+// }
+// subjectClasses($con);
+// echo nonEmptySubjects($con);
 ?>

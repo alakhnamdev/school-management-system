@@ -41,7 +41,7 @@ if(isset($_GET['subjectId'])){
     <div class="p-3">
         <div class="p-3 border border-2 rounded-3 overflow-hidden">
             <div class="table-responsive p-1">                
-            <table id="Table" class="table table-hover caption-top">
+            <table id="Table" class="table table-hover caption-top table-bordered">
                 <caption class="h3 fw-bold">Manage Subjects</caption>
                 <thead>
                     <th>Id</th>
