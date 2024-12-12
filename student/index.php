@@ -26,7 +26,7 @@
                 <hr class="hr">
             </header>
             <div class="container-fluid">
-                <div class="row">
+                <div id="dcon" class="row">
                     <div class="col mb-3 mx-1">
                         <a href="../student/notice.php">
                             <button class="w-100 p-3 btn btn-dark fw-bold"><h5>Notice</h5></button>
@@ -46,6 +46,13 @@
             </div>
         </div>
     </div>
+    <script>
+        if(screen.width<600){
+            document.querySelectorAll("#dcon").forEach((event)=>{
+                event.classList.remove("row");
+            })
+        }
+    </script>
 </body>
 
 </html>

@@ -60,8 +60,8 @@ else {
                                 <td><?php echo htmlspecialchars($stud["student id"]) ?></td>
                                 <td><?php echo htmlspecialchars($stud["student name"]==NULL ? "None" : $stud["student name"]) ?></td>
                                 <td><?php echo htmlspecialchars($stud["class"]) ?></td>
-                                <td><?php echo htmlspecialchars($stud["attendance"]==NULL ? "0" : $stud["attendance"]) ?></td>
-                                <td><?php echo htmlspecialchars($sessions['session']==NULL ? "0" : $sessions['session'])  ?></td>
+                                <td><?php echo htmlspecialchars($stud["attendance"]==NULL ? 1 : $stud["attendance"]) ?></td>
+                                <td><?php echo htmlspecialchars($sessions['session']==NULL ? 1 : $sessions['session'])  ?></td>
                             </tr>
                         <?php }
                         ?>

@@ -27,9 +27,9 @@ else if(str_contains($_SESSION['username'],"CRD")){
         <body class="bg-light">
             <nav>
                 <div id="navbar" class="container-fluid bg-white text-center w-100 position-fixed top-0 left-0 z-1 d-flex justify-content-center align-items-center">
-                    <button class="btn btn-dark mb-3 text-start border-0 shadow-none rounded-3 bg-light text-secondary fw-semibold" style="position: absolute; left: 10px; top: 20px;" onclick="action(this)"><img src="../assets/svg/menu.svg" style="filter: invert(1); height: 30px;" class="opacity-75" alt="menu"></button>
+                    <button class="btn mb-3 text-start border-0 shadow-none rounded-3 text-secondary fw-semibold" style="position: absolute; left: 10px; top: 20px;" onclick="action(this)"><img src="../assets/svg/menu.svg" style="filter: invert(1); height: 30px;" class="opacity-75" alt="menu"></button>
                     <h1 class="playfair text-secondary display-4 fw-bold mt-1 text-dark">School ERP</h1>
-                    <button class="btn btn-dark mb-3 text-start border-0 shadow-none rounded-3 bg-light text-secondary fw-semibold" style="position: absolute; right: 10px; top: 20px;" onclick="openPage('../logout')"><img src="../assets/svg/logout.svg" style="filter: invert(1); height: 30px;" class="opacity-75" alt="menu"></button>
+                    <button class="btn mb-3 text-start border-0 shadow-none rounded-3 text-secondary fw-semibold" style="position: absolute; right: 10px; top: 20px;" onclick="openPage('../logout')"><img src="../assets/svg/logout.svg" style="filter: invert(1); height: 30px;" class="opacity-75" alt="menu"></button>
                 </div>
             </nav>
             <div id="sidebar" class="position-fixed top-0 vh-100 bg-white p-3 overflow-hidden z-1">
@@ -47,23 +47,9 @@ else if(str_contains($_SESSION['username'],"CRD")){
                             </button>
                         </h2>
                         <div id="flush-collapseFour" class="accordion-collapse collapse rounded-3" data-bs-parent="#accordionFlushExample">
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../notice/')">Notice Board</button>
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../notice/create notice.php')">Create Notice</button>
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../notice/')">Manage Notice</button>
-                        </div>
-                    </div>
-                    <!-- Sidebar Element -->
-
-                    <!-- Sidebar Element -->             
-                    <div class="accordion-item mb-2 rounded-3 border-0">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed shadow-none p-1 rounded-3 bg-light text-secondary p-3 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                Users
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse rounded-3" data-bs-parent="#accordionFlushExample">
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../user/create user.php')">Create User</button>
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../user/user.php')">Manage Users</button>
+                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('notice.php')">Notice Board</button>
+                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('create notice.php')">Create Notice</button>
+                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('manage notice.php')">Manage Notice</button>
                         </div>
                     </div>
                     <!-- Sidebar Element -->
@@ -76,8 +62,8 @@ else if(str_contains($_SESSION['username'],"CRD")){
                             </button>
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse rounded-3" data-bs-parent="#accordionFlushExample">
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../academics/index.php')">View Academics</button>
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../')">Update Academics</button>
+                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('academics.php')">View Academics</button>
+                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('update academics.php')">Update Academics</button>
                         </div>
                     </div>
                     <!-- Sidebar Element -->
@@ -90,23 +76,8 @@ else if(str_contains($_SESSION['username'],"CRD")){
                             </button>
                         </h2>
                         <div id="flush-collapseThree" class="accordion-collapse collapse rounded-3" data-bs-parent="#accordionFlushExample">
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../attendance/index.php')">View Attendance</button>
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../')">Update Attendance</button>
-                        </div>
-                    </div>
-                    <!-- Sidebar Element -->
-
-                    <!-- Sidebar Element -->             
-                    <div class="accordion-item mb-2 rounded-3 border-0">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed shadow-none p-1 rounded-3 bg-light text-secondary p-3 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                                Subject
-                            </button>
-                        </h2>
-                        <div id="flush-collapseFive" class="accordion-collapse collapse rounded-3" data-bs-parent="#accordionFlushExample">
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../subject/create subject.php')">Create Subject</button>
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../subject/subjects.php')">Manage Subject</button>
-                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('../subject/subject allocation.php')">Subject Allocation</button>
+                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('attendance.php')">View Attendance</button>
+                        <button class="accordion-body btn bg-light fw-bold text-secondary p-2 mt-2" onclick="openPage('update attendance.php')">Update Attendance</button>
                         </div>
                     </div>
                     <!-- Sidebar Element -->

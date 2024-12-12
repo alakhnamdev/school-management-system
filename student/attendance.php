@@ -24,50 +24,53 @@
                 <h3 class="h3 fw-bold">Attendance</h3>
                 <hr class="hr">
             </header>
-            <table class="table table-hover">
-                <thead class="table-light">
-                    <tr>                        
-                        <th>Subject Code</th>
-                        <th>Subject Name</th>
-                        <th>Sessions</th>
-                        <th>Attended</th>
-                        <th>Absent</th>
-                        <th>Attendance(%)</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    <?php
-                    include '../connection/connector.php';
-                    $user = $_SESSION["username"];
-                    $subjects = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `student` WHERE `student id`='$user'"));
-                    for($i=1;$i<=6;$i++){
-                        $sub = $subjects["subject $i"];
-                        $subName = mysqli_fetch_assoc(mysqli_query($con,"SELECT `subject`.`subject name`,`subject sessions`.`session` FROM `subject` INNER JOIN `subject sessions` ON `subject`.`subject id`=`subject sessions`.`subject id` WHERE `subject`.`subject id`='$sub'"));
-                        $session = $subName['session']==NULL ? 1 : $subName['session'];
-                        $subName = $subName['subject name'];
-                        $subTable = strtolower($sub);
-                        $attended = mysqli_fetch_assoc(mysqli_query($con,"SELECT `attendance` FROM `$subTable` WHERE `student id`='$user'"));
-                        $attended = $attended['attendance']==NULL ? 1 : $attended['attendance'];
-                        $absent = $session - $attended;
-                        $attendance = ($attended/$session)*100;
-                        $attendance = "$attendance%";
-                        ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($sub); ?></td>
-                        <td><?php echo htmlspecialchars($subName); ?></td>
-                        <td><?php echo htmlspecialchars($session); ?></td>
-                        <td><?php echo htmlspecialchars($attended); ?></td>
-                        <td><?php echo htmlspecialchars($absent); ?></td>
-                        <td><?php echo htmlspecialchars($attendance); ?></td>
-                    </tr>
+            <div class="table-responsive">                
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>                        
+                            <th>Subject Code</th>
+                            <th>Subject Name</th>
+                            <th>Sessions</th>
+                            <th>Attended</th>
+                            <th>Absent</th>
+                            <th>Attendance(%)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
                         <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        include '../connection/connector.php';
+                        $user = $_SESSION["username"];
+                        $subjects = mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM `student` WHERE `student id`='$user'"));
+                        for($i=1;$i<=6;$i++){
+                            $sub = $subjects["subject $i"];
+                            $subName = mysqli_fetch_assoc(mysqli_query($con,"SELECT `subject`.`subject name`,`subject sessions`.`session` FROM `subject` INNER JOIN `subject sessions` ON `subject`.`subject id`=`subject sessions`.`subject id` WHERE `subject`.`subject id`='$sub'"));
+                            $session = $subName['session']==NULL ? 1 : $subName['session'];
+                            $subName = $subName['subject name'];
+                            $subTable = strtolower($sub);
+                            $attended = mysqli_fetch_assoc(mysqli_query($con,"SELECT `attendance` FROM `$subTable` WHERE `student id`='$user'"));
+                            $attended = $attended['attendance']==NULL ? 1 : $attended['attendance'];
+                            $absent = $session - $attended;
+                            $attendance = ($attended/$session)*100;
+                            $attendance = "$attendance%";
+                            ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($sub); ?></td>
+                            <td><?php echo htmlspecialchars($subName); ?></td>
+                            <td><?php echo htmlspecialchars($session); ?></td>
+                            <td><?php echo htmlspecialchars($attended); ?></td>
+                            <td><?php echo htmlspecialchars($absent); ?></td>
+                            <td><?php echo htmlspecialchars($attendance); ?></td>
+                        </tr>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-        <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
 </body>
 
 </html>

@@ -1,16 +1,27 @@
-<?php include "../sidebar/sidebar.php";?>
 <?php
-include "../connection/connector.php";
-if (!isset($_GET['subjectId'])) {
+include '../connection/connector.php';
+include '../sidebar/sidebar crd.php';
+function updateMarks($con,$students,$marks,$subject,$clas){
+    $subject = strtolower($subject);
+    for($i = 0; $i < count($students); $i++){
+        $update = mysqli_query($con,"UPDATE `$subject` SET `marks`='$marks[$i]' WHERE `student id`='$students[$i]'");
+    }
     ?>
     <script>
-        alert("Invalid Entry!");
-        window.open("../academics/", "_self");
+        alert('Marks Updated');
+        window.open(`update academics.php?subjectId=<?php echo htmlentities($subject)?>&class=<?php echo htmlentities($clas)?>`,"_self");
     </script>
     <?php
-} else {
-    $subName = $_GET['subjectName'];
-    $studId = strtolower($_GET['subjectId']);
+}
+if(isset($_POST['update'])){
+    updateMarks($con,$_POST['users'],$_POST['marks'],$_POST['subjectId'],$_POST['class']);
+}
+if (isset($_POST['class']) && isset($_POST['subjectId']) && ! isset($_POST['update'])) {
+    $users = $_POST['users'];
+    $sub = $_POST['subjectId'];
+    $subName = $_POST['subjectName'];
+    $clas = $_POST['class'];
+    $subId = strtolower($sub);
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -35,33 +46,44 @@ if (!isset($_GET['subjectId'])) {
         <div class="p-3">
             <div class="p-3 border border-2 rounded-3 overflow-hidden">
                 <div class="table-responsive">
+                    <form action="marks.php" method="post">
+                    <input type="hidden" name="subjectId" value="<?php echo htmlentities($subId)?>">
+                    <input type="hidden" name="subjectName" value="<?php echo htmlentities($subName)?>">
+                    <input type="hidden" name="class" value="<?php echo htmlentities($clas)?>">
                     <table id="Table" class="table table-hover caption-top">
                     <caption class="h3 fw-bold"><?php echo htmlentities($subName)?> Marks</caption>
                     <thead>
                         <th>Id</th>
                         <th>Student Id</th>
                         <th>Student Name</th>
-                        <th>Class</th>
                         <th>Marks</th>
                     </thead>
                     <tbody class="table-group-divider">
                         <?php
-                        $students = mysqli_fetch_all(mysqli_query($con, "SELECT `$studId`.`id` ,`$studId`.`student id` ,`$studId`.`marks`,`student`.`student name`,`student`.`class` FROM `$studId` INNER JOIN `student` ON `$studId`.`student id`=`student`.`student id`"), MYSQLI_ASSOC);
                         $count = 0;
-                        foreach ($students as $stud) {
+                        foreach ($users as $user) {
                             $count++;
                             ?>
                             <tr>
                                 <td><?php echo $count;?></td>
-                                <td><?php echo htmlspecialchars($stud["student id"]) ?></td>
-                                <td><?php echo htmlspecialchars($stud["student name"]==NULL ? "None" : $stud["student name"]) ?></td>
-                                <td><?php echo htmlspecialchars($stud["class"]) ?></td>
-                                <td><?php echo htmlspecialchars($stud["marks"]==NULL ? 0 : $stud["marks"])  ?></td>
+                                <td><?php echo htmlentities($user);?></td>
+                                <td>
+                                    <?php 
+                                    $studName = mysqli_fetch_assoc(mysqli_query($con,"SELECT `student name` FROM `student` WHERE `student id`= '$user'"));
+                                    echo $studName['student name']==NULL ? "None" : $studName['student name'];
+                                    ?>
+                                </td>
+                                <td>
+                                    <input type="number" name="marks[]" required>
+                                    <input type="hidden" name="users[]" value="<?php echo htmlentities($user)?>">
+                                </td>
                             </tr>
                         <?php }
                         ?>
                     </tbody>
                     </table>
+                    <button name="update" class="btn btn-dark shadow-none p-3 px-5">Update Students</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -69,9 +91,9 @@ if (!isset($_GET['subjectId'])) {
         <script src="../assets/datatables/jquery.dataTables.min.js"></script>
         <script src="../assets/datatables/dataTables.bootstrap5.min.js"></script>
         <script>
-            $(document).ready( function () {
-                $('#Table').DataTable();
-            } );
+            // $(document).ready( function () {
+            //     $('#Table').DataTable();
+            // } );
         </script>
     </body>
 

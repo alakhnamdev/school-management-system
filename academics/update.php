@@ -19,7 +19,7 @@ if(isset($_POST['update'])){
 if (isset($_POST['class']) && isset($_POST['subjectId']) && ! isset($_POST['update'])) {
     $users = $_POST['users'];
     $sub = $_POST['subjectId'];
-    $subName = $_POST['subject name'];
+    $subName = $_POST['subjectName'];
     $clas = $_POST['class'];
     $subId = strtolower($sub);
     ?>

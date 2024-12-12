@@ -190,7 +190,7 @@ if (isset($_GET['class']) && isset($_GET['subjectId'])) {
                                         <td><?php echo htmlspecialchars($stud["student id"]) ?></td>
                                         <td><?php echo htmlspecialchars($stud["student name"]==NULL ? "None" : $stud["student name"]) ?></td>
                                         <td><?php echo htmlspecialchars($stud["class"]) ?></td>
-                                        <td><?php echo htmlspecialchars($stud["marks"]==NULL ? "0" : $stud["marks"])  ?></td>
+                                        <td><?php echo htmlspecialchars($stud["marks"]==NULL ? 0 : $stud["marks"])  ?></td>
                                         <td><input class="users" type="checkbox" name="users[]" value="<?php echo htmlspecialchars($stud["student id"]) ?>"></td>
                                     </tr>
                                 <?php }
