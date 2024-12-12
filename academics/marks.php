@@ -5,7 +5,7 @@ if (!isset($_GET['subjectId'])) {
     ?>
     <script>
         alert("Invalid Entry!");
-        window.open("./academics.php", "_self");
+        window.open("../academics/", "_self");
     </script>
     <?php
 } else {

@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include '../connection/connector.php';
 include '../sidebar/sidebar.php';
 function getClasses($con,$subject){
@@ -57,6 +60,35 @@ function viewByClass($con,$subject)
     </select>
     <?php
 }
+function updateAttendance($con,$students,$subject,$clas,$session){
+    foreach($students as $stud){
+        $attendance = mysqli_fetch_assoc(mysqli_query($con,"SELECT `attendance` FROM `$subject` WHERE `student id`= '$stud'"));
+        $attendance = $attendance['attendance']+1;
+        $update = mysqli_query($con,"UPDATE `$subject` SET `attendance`='$attendance' WHERE `student id`='$stud'");
+    }
+    print_r($session);
+    $session = $session+1;
+    $subject = strtoupper($subject);
+    $update = mysqli_query($con,"UPDATE `subject sessions` SET `session`='$session' WHERE `subject id`='$subject'");
+    ?>
+    <script>
+        alert('Attendance Updated');
+        window.open(`update attendance.php?subjectId=<?php echo htmlentities($subject)?>&class=<?php echo htmlentities($clas)?>`,"_self");
+    </script>
+    <?php
+}
+if(isset($_POST['update'])){
+    if(isset($_POST['users'])){
+        updateAttendance($con,$_POST['users'],$_POST['subjectId'],$_POST['class'],$_POST['session']);
+    }
+    else{
+        ?>
+        <script>
+            window.open(`update attendance.php?subjectId=<?php echo htmlentities($_POST['subjectId'])?>&class=<?php echo htmlentities($_POST['class'])?>`,"_self");
+        </script>
+        <?php        
+    }
+}
 if (!isset($_GET['subjectId'])) {
     ?>
         <!DOCTYPE html>
@@ -72,7 +104,7 @@ if (!isset($_GET['subjectId'])) {
             <div class="p-3">
                 <div class="p-3 border border-2 rounded-3">
                     <header>
-                        <h3 class="h3 fw-bold">Update Marks</h3>
+                        <h3 class="h3 fw-bold">Update Attendance</h3>
                         <hr class="hr">
                     </header>
                     <div class="mb-3" id="class">
@@ -86,7 +118,7 @@ if (!isset($_GET['subjectId'])) {
             </div>
         <script>
             let openSubject = ()=>{
-                window.open(`update marks.php?subjectId=${document.getElementById('subjects').value}`,"_self");
+                window.open(`update attendance.php?subjectId=${document.getElementById('subjects').value}`,"_self");
             }
         </script>
         </body>
@@ -112,7 +144,7 @@ if (!isset($_GET['class']) && isset($_GET['subjectId'])) {
         <div class="p-3">
             <div class="p-3 border border-2 rounded-3">
                 <header>
-                    <h3 class="h3 fw-bold">Update Marks (<?php echo htmlentities($subName) ?>)</h3>
+                    <h3 class="h3 fw-bold">Update Attendance (<?php echo htmlentities($subName) ?>)</h3>
                     <hr class="hr">
                 </header>
                 <div class="mb-3" id="class">
@@ -126,7 +158,7 @@ if (!isset($_GET['class']) && isset($_GET['subjectId'])) {
         </div>
         <script>
             let openClass = ()=>{
-                window.open(`update marks.php?subjectId=<?php echo htmlentities($subId)?>&class=${document.getElementById('cls').value}`,"_self");
+                window.open(`update attendance.php?subjectId=<?php echo htmlentities($subId)?>&class=${document.getElementById('cls').value}`,"_self");
             }
         </script>
     </body>
@@ -137,6 +169,8 @@ if (!isset($_GET['class']) && isset($_GET['subjectId'])) {
 if (isset($_GET['class']) && isset($_GET['subjectId'])) {
     $subId = $_GET['subjectId'];
     $subName = mysqli_fetch_assoc(mysqli_query($con,"SELECT `subject name` FROM `subject` WHERE `subject id`= '$subId'"));
+    $session = mysqli_fetch_assoc(mysqli_query($con,"SELECT `session` FROM `subject sessions` WHERE `subject id`= '$subId'"));
+    $session = $session['session']==NULL ? 1 : $session['session'];
     $subName = $subName['subject name'];
     $clas = $_GET['class'];
     $subId = strtolower($subId);
@@ -164,23 +198,25 @@ if (isset($_GET['class']) && isset($_GET['subjectId'])) {
         <div class="p-3">
             <div class="p-3 border border-2 rounded-3 overflow-hidden">
                 <div class="table-responsive">
-                    <form id="userform" action="update.php" method="post">
+                    <form id="userform" action="update attendance.php" method="post">
                     <input type="hidden" name="subjectId" value="<?php echo htmlentities($subId)?>">
                     <input type="hidden" name="subjectName" value="<?php echo htmlentities($subName)?>">
                     <input type="hidden" name="class" value="<?php echo htmlentities($clas)?>">
+                    <input type="hidden" name="session" value="<?php echo htmlentities($session)?>">
                         <table id="Table" class="table table-hover caption-top">
-                            <caption class="h3 fw-bold"><?php echo htmlentities($subName)?> Marks</caption>
+                            <caption class="h3 fw-bold"><?php echo htmlentities($subName)?> Attendance</caption>
                             <thead>
                                 <th>Id</th>
                                 <th>Student Id</th>
                                 <th>Student Name</th>
                                 <th>Class</th>
-                                <th>Marks</th>
+                                <th>Sessions</th>
+                                <th>Attendance</th>
                                 <th>Select</th>
                             </thead>
                             <tbody class="table-group-divider">
                                 <?php
-                                $students = mysqli_fetch_all(mysqli_query($con, "SELECT `$subId`.`id` ,`$subId`.`student id` ,`$subId`.`marks`,`student`.`student name`,`student`.`class` FROM `$subId` INNER JOIN `student` ON `$subId`.`student id`=`student`.`student id` WHERE `student`.`class`='$clas'"), MYSQLI_ASSOC);
+                                $students = mysqli_fetch_all(mysqli_query($con, "SELECT `$subId`.`id` ,`$subId`.`student id` ,`$subId`.`attendance`,`student`.`student name`,`student`.`class` FROM `$subId` INNER JOIN `student` ON `$subId`.`student id`=`student`.`student id` WHERE `student`.`class`='$clas'"), MYSQLI_ASSOC);
                                 $count = 0;
                                 foreach ($students as $stud) {
                                     $count++;
@@ -190,14 +226,15 @@ if (isset($_GET['class']) && isset($_GET['subjectId'])) {
                                         <td><?php echo htmlspecialchars($stud["student id"]) ?></td>
                                         <td><?php echo htmlspecialchars($stud["student name"]==NULL ? "None" : $stud["student name"]) ?></td>
                                         <td><?php echo htmlspecialchars($stud["class"]) ?></td>
-                                        <td><?php echo htmlspecialchars($stud["marks"]==NULL ? "0" : $stud["marks"])  ?></td>
+                                        <td><?php echo htmlspecialchars($session) ?></td>
+                                        <td><?php echo htmlspecialchars($stud["attendance"]==NULL ? "0" : $stud["attendance"])  ?></td>
                                         <td><input class="users" type="checkbox" name="users[]" value="<?php echo htmlspecialchars($stud["student id"]) ?>"></td>
                                     </tr>
                                 <?php }
                                 ?>
                             </tbody>
                         </table>
-                    <button class="btn btn-dark shadow-none p-3 px-5">Update Students</button>
+                    <button name="update" class="btn btn-dark shadow-none p-3 px-5">Update Students</button>
                     </form>
                 </div>
             </div>

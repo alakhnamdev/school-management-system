@@ -45,7 +45,7 @@ if (isset($_POST['class']) && isset($_POST['subjectId']) && ! isset($_POST['upda
     <body>
         <div class="p-3">
             <div class="p-3 border border-2 rounded-3 overflow-hidden">
-                <div class="table-responsive overflow-hidden">
+                <div class="table-responsive">
                     <form action="update.php" method="post">
                     <input type="hidden" name="subjectId" value="<?php echo htmlentities($subId)?>">
                     <input type="hidden" name="subjectName" value="<?php echo htmlentities($subName)?>">
